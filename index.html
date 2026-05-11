@@ -610,7 +610,7 @@
   // ==================== LÓGICA ORIGINAL CON MEJORAS ====================
   const PASSWORDS = { 'control-interno': 'ControlInterno2026', 'visitante': 'Visitante2026' };
   let perfilActual = null, soloLectura = true;
-  const MINUTOS_SESION = 1, TIEMPO_INACTIVIDAD = MINUTOS_SESION * 60 * 1000;
+  const MINUTOS_SESION = 10, TIEMPO_INACTIVIDAD = MINUTOS_SESION * 60 * 1000;
   let tiempoRestante = MINUTOS_SESION * 60, temporizadorInactividad = null, temporizadorReloj = null;
   function actualizarReloj(){ let t=document.getElementById('timerText'); if(t){ let m=Math.floor(tiempoRestante/60),s=tiempoRestante%60; t.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; let div=document.getElementById('sessionTimer'); if(div){ if(tiempoRestante<=10) div.classList.add('critical'); else if(tiempoRestante<=30) div.classList.add('warning'); else div.classList.remove('warning','critical'); } } }
   function iniciarContadorReloj(){ if(temporizadorReloj) clearInterval(temporizadorReloj); tiempoRestante=MINUTOS_SESION*60; actualizarReloj(); temporizadorReloj=setInterval(()=>{ if(tiempoRestante>0 && perfilActual){ tiempoRestante--; actualizarReloj(); } },1000); }
