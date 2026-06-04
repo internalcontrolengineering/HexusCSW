@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
   <title>Hexus · Gestión de Guardias</title>
   <style>
     * {
@@ -14,7 +14,7 @@
     body {
       background: linear-gradient(145deg, #eef2fa 0%, #e2e9f2 100%);
       font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, 'BlinkMacSystemFont', 'Roboto', sans-serif;
-      padding: 2rem;
+      padding: 0.75rem;
       min-height: 100vh;
     }
 
@@ -23,37 +23,38 @@
       max-width: 1440px;
       margin: 0 auto;
       background: #ffffff;
-      border-radius: 2rem;
+      border-radius: 1.5rem;
       box-shadow: 0 25px 45px -12px rgba(0, 40, 80, 0.25);
       overflow: hidden;
       transition: all 0.2s;
       border: 1px solid rgba(30, 80, 120, 0.12);
     }
 
-    /* Header azul corporativo */
+    /* Header azul corporativo - responsive */
     .header {
-      padding: 1.25rem 2rem;
+      padding: 0.875rem 1rem;
       background: #ffffff;
       border-bottom: 2px solid #1a5d8c;
       display: flex;
       flex-wrap: wrap;
       justify-content: space-between;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
     }
 
     .logo-area {
       display: flex;
       align-items: center;
-      gap: 1rem;
+      gap: 0.75rem;
+      flex-wrap: wrap;
     }
     .logo-area img {
-      height: 52px;
+      height: 40px;
       width: auto;
       filter: drop-shadow(0 2px 4px rgba(0,0,0,0.05));
     }
     .logo-area h1 {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       font-weight: 700;
       letter-spacing: -0.3px;
       color: #0a3a5c;
@@ -61,34 +62,34 @@
       -webkit-text-fill-color: initial;
     }
     .logo-area p {
-      font-size: 0.7rem;
+      font-size: 0.6rem;
       font-weight: 500;
       color: #2c6e9e;
-      margin-top: 0.15rem;
+      margin-top: 0.1rem;
       letter-spacing: 0.3px;
     }
 
-    /* Profile badge azul suave */
+    /* Profile badge azul suave - responsive */
     .profile-badge {
       display: flex;
       align-items: center;
-      gap: 1.2rem;
+      gap: 0.8rem;
       background: #eef5fc;
-      padding: 0.4rem 1.4rem;
+      padding: 0.3rem 1rem;
       border-radius: 2rem;
       border: 1px solid #cde1f0;
     }
     .profile-badge span {
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 500;
       color: #1a5d8c;
     }
     .btn-change-profile {
       background: #ffffff;
       border: 1px solid #bdd4e8;
-      padding: 0.25rem 1rem;
+      padding: 0.2rem 0.8rem;
       border-radius: 2rem;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
       color: #1a5d8c;
       cursor: pointer;
@@ -100,13 +101,13 @@
       border-color: #1a5d8c;
     }
 
-    /* Barra de controles azul/blanca */
+    /* Barra de controles azul/blanca - responsive */
     .controls {
       display: flex;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 0.875rem 1rem;
       background: #ffffff;
       border-bottom: 1px solid #e2edf6;
     }
@@ -120,13 +121,14 @@
     .view-btn {
       border: none;
       background: transparent;
-      padding: 0.5rem 1.6rem;
+      padding: 0.4rem 1rem;
       border-radius: 40px;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       color: #2c6288;
       cursor: pointer;
       transition: 0.2s;
+      white-space: nowrap;
     }
     .view-btn.active {
       background: #1a5d8c;
@@ -138,8 +140,8 @@
       background: white;
       border: 1px solid #cde1f0;
       border-radius: 2rem;
-      padding: 0.45rem 1.2rem;
-      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      font-size: 0.75rem;
       font-weight: 500;
       color: #1a5d8c;
       cursor: pointer;
@@ -151,8 +153,9 @@
     }
     .month-nav {
       display: flex;
-      gap: 0.5rem;
+      gap: 0.4rem;
       align-items: center;
+      flex-wrap: wrap;
     }
     .month-nav span {
       background: #f8fbfe;
@@ -161,38 +164,40 @@
     .btn-primary-action {
       background: #1a5d8c;
       border: none;
-      padding: 0.5rem 1.6rem;
+      padding: 0.4rem 1.2rem;
       border-radius: 2rem;
       font-weight: 600;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
       color: white;
       cursor: pointer;
       transition: 0.2s;
       box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+      white-space: nowrap;
     }
     .btn-primary-action:hover {
       background: #0e4264;
       transform: translateY(-1px);
     }
 
-    /* Calendario con bordes azules suaves */
+    /* Calendario con bordes azules suaves - responsive */
     .calendar-container {
-      padding: 1.5rem 2rem;
+      padding: 1rem;
       background: #ffffff;
     }
     .calendar-grid {
       background: white;
-      border-radius: 1.5rem;
+      border-radius: 1rem;
       border: 1px solid #dce9f2;
       overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
     .weekdays {
       display: grid;
       grid-template-columns: repeat(7, 1fr);
       background: #f5faff;
-      padding: 0.9rem 0.5rem;
+      padding: 0.6rem 0.3rem;
       font-weight: 700;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       text-transform: uppercase;
       letter-spacing: 0.3px;
       color: #1a5d8c;
@@ -205,8 +210,8 @@
     }
     .day-cell {
       border: 1px solid #e8f0f8;
-      min-height: 112px;
-      padding: 0.6rem;
+      min-height: 80px;
+      padding: 0.4rem;
       background: white;
       transition: all 0.15s ease;
       cursor: pointer;
@@ -218,15 +223,15 @@
     }
     .day-number {
       font-weight: 700;
-      font-size: 0.8rem;
+      font-size: 0.7rem;
       display: inline-block;
-      width: 28px;
-      height: 28px;
-      line-height: 28px;
+      width: 24px;
+      height: 24px;
+      line-height: 24px;
       text-align: center;
       border-radius: 30px;
       background: #eef3fc;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       color: #1a5d8c;
     }
     .other-month .day-number {
@@ -234,80 +239,81 @@
       background: #f8fbfe;
     }
     .guardia-badge {
-      font-size: 0.68rem;
+      font-size: 0.6rem;
       font-weight: 600;
-      padding: 5px 6px;
-      border-radius: 14px;
-      margin-top: 4px;
+      padding: 4px 5px;
+      border-radius: 12px;
+      margin-top: 3px;
       text-align: center;
       word-break: break-word;
       cursor: pointer;
       transition: 0.05s linear;
       background: #eef3fc;
       color: #1a5d8c;
-      border-left: 3px solid #1a5d8c;
+      border-left: 2px solid #1a5d8c;
+      line-height: 1.2;
     }
     .guardia-badge:hover {
       background: #e2edf8;
       transform: translateY(-1px);
     }
     .saturday-badge {
-      font-size: 0.65rem;
+      font-size: 0.58rem;
       background: #e2edf8;
-      border-radius: 14px;
-      padding: 4px 6px;
+      border-radius: 12px;
+      padding: 3px 5px;
       text-align: center;
       color: #1a5d8c;
       font-weight: 600;
     }
     .apunte-badge {
-      font-size: 0.65rem;
+      font-size: 0.58rem;
       background: #fff0e0;
-      border-radius: 14px;
-      padding: 4px 6px;
+      border-radius: 12px;
+      padding: 3px 5px;
       text-align: center;
       color: #c26b1a;
       cursor: pointer;
       font-weight: 500;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      white-space: normal;
+      word-break: break-word;
+      line-height: 1.2;
     }
     .horario-badge {
-      font-size: 0.6rem;
+      font-size: 0.55rem;
       background: #dff0e8;
-      border-radius: 14px;
-      padding: 3px 6px;
-      margin-top: 3px;
+      border-radius: 12px;
+      padding: 2px 5px;
+      margin-top: 2px;
       text-align: center;
       color: #0a5e3e;
     }
 
-    /* Year view cards con borde azul */
+    /* Year view cards con borde azul - responsive */
     .year-view-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 1.2rem;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1rem;
     }
     .month-card {
       background: white;
-      border-radius: 1.2rem;
-      padding: 0.8rem;
+      border-radius: 1rem;
+      padding: 0.7rem;
       border: 1px solid #dce9f2;
       transition: 0.1s;
     }
     .month-title {
       font-weight: 700;
-      padding: 0.6rem;
+      padding: 0.5rem;
       background: #eef5fc;
-      border-radius: 1rem;
-      margin-bottom: 12px;
+      border-radius: 0.8rem;
+      margin-bottom: 10px;
       text-align: center;
       color: #1a5d8c;
-      font-size: 0.8rem;
+      font-size: 0.75rem;
     }
 
-    /* Modales elegantes */
+    /* Modales elegantes - responsive */
     .modal {
       display: none;
       position: fixed;
@@ -320,26 +326,29 @@
       align-items: center;
       justify-content: center;
       z-index: 15000;
+      padding: 1rem;
     }
     .modal-content {
       background: white;
       max-width: 560px;
-      width: 90%;
-      border-radius: 1.8rem;
-      padding: 1.8rem;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
       box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.3);
       border-top: 5px solid #1a5d8c;
     }
     .modal-content h3 {
-      font-size: 1.35rem;
+      font-size: 1.2rem;
       font-weight: 700;
       color: #0a3a5c;
-      margin-bottom: 1.2rem;
+      margin-bottom: 1rem;
     }
     input, select, textarea {
       width: 100%;
-      padding: 12px 14px;
-      margin: 8px 0;
+      padding: 10px 12px;
+      margin: 6px 0;
       border: 1px solid #cde1f0;
       border-radius: 50px;
       font-size: 0.85rem;
@@ -350,7 +359,7 @@
       border-radius: 1rem;
       resize: vertical;
       min-height: 100px;
-      max-height: 250px;
+      max-height: 200px;
       font-family: inherit;
     }
     input:focus, select:focus, textarea:focus {
@@ -360,22 +369,29 @@
     }
     .time-select-group {
       display: flex;
-      gap: 1rem;
+      gap: 0.8rem;
       margin: 0.5rem 0;
+      flex-wrap: wrap;
+    }
+    .time-select-group > div {
+      flex: 1;
+      min-width: 120px;
     }
     .modal-buttons {
       display: flex;
       gap: 0.8rem;
       margin-top: 1.5rem;
       justify-content: flex-end;
+      flex-wrap: wrap;
     }
     button {
       border: none;
-      padding: 8px 22px;
+      padding: 8px 18px;
       border-radius: 40px;
       font-weight: 600;
       cursor: pointer;
       transition: 0.2s;
+      font-size: 0.85rem;
     }
     .btn-primary {
       background: #1a5d8c;
@@ -394,12 +410,13 @@
       color: #bc1c2e;
     }
 
-    /* Footer azul claro */
+    /* Footer azul claro - responsive */
     footer {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.8rem;
       align-items: center;
-      padding: 0.9rem 2rem;
+      padding: 0.8rem 1rem;
       background: #fafdff;
       border-top: 1px solid #dce9f2;
       font-size: 0.7rem;
@@ -407,13 +424,14 @@
     }
     .action-buttons {
       display: flex;
-      gap: 0.8rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
+      justify-content: center;
     }
     .action-btn {
-      padding: 5px 14px;
+      padding: 4px 12px;
       border-radius: 30px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 500;
       background: #eef3fc;
       color: #1a5d8c;
@@ -423,30 +441,38 @@
     .action-btn.whatsapp { background: #e1f5e8; color: #0c6b4b; border-color: #b8e0ce; }
     .action-btn.email { background: #fef2f2; color: #bc544b; border-color: #f5dbdb; }
 
-    /* Historial y gestión */
+    /* Historial y gestión - responsive */
     .history-list {
       background: #fafdff;
       border-radius: 1rem;
-      padding: 1rem;
+      padding: 0.8rem;
       max-height: 300px;
       overflow-y: auto;
     }
     .badge-change {
       background: #eef3fc;
       color: #1a5d8c;
-      padding: 2px 10px;
+      padding: 2px 8px;
       border-radius: 30px;
-      font-size: 0.7rem;
+      font-size: 0.65rem;
       font-weight: 600;
     }
     .persona-item {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
+      gap: 0.5rem;
       background: #fafdff;
       border-radius: 1rem;
-      padding: 10px 14px;
+      padding: 10px 12px;
       margin-bottom: 8px;
       border: 1px solid #dce9f2;
+    }
+    @media (min-width: 480px) {
+      .persona-item {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+      }
     }
     .persona-info {
       flex: 1;
@@ -461,6 +487,7 @@
     .persona-nombre {
       font-weight: 600;
       cursor: pointer;
+      font-size: 0.9rem;
     }
     .persona-puesto {
       font-size: 0.7rem;
@@ -472,9 +499,10 @@
       padding: 4px 12px;
       border-radius: 2rem;
       font-size: 0.7rem;
+      align-self: flex-start;
     }
 
-    /* Login card corporate - z-index elevado */
+    /* Login card corporate - responsive */
     .login-modal {
       position: fixed;
       top: 0;
@@ -487,19 +515,24 @@
       align-items: center;
       justify-content: center;
       z-index: 20000;
+      padding: 1rem;
     }
     .login-card {
       background: white;
-      border-radius: 2rem;
-      padding: 2rem;
-      width: 420px;
+      border-radius: 1.5rem;
+      padding: 1.5rem;
+      width: 90%;
+      max-width: 420px;
       text-align: center;
       box-shadow: 0 40px 60px -20px rgba(0, 0, 0, 0.3);
       border-top: 6px solid #1a5d8c;
     }
     .login-card img {
-      width: 100px;
+      width: 80px;
       margin-bottom: 1rem;
+    }
+    .login-card h3 {
+      font-size: 1.2rem;
     }
 
     /* Aseguramos que SweetAlert2 aparezca por encima de todo */
@@ -507,17 +540,18 @@
       z-index: 30000 !important;
     }
 
-    /* Timer azul */
+    /* Timer azul - responsive */
     .session-timer {
       position: fixed;
-      bottom: 24px;
-      left: 24px;
+      bottom: 16px;
+      left: 16px;
       background: #1a5d8c;
       color: white;
-      padding: 8px 20px;
+      padding: 6px 16px;
       border-radius: 60px;
       font-family: monospace;
       font-weight: 700;
+      font-size: 0.8rem;
       box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
       z-index: 1100;
     }
@@ -540,6 +574,46 @@
       background: white;
       border: 1px solid #1a5d8c;
     }
+
+    /* Ajustes adicionales para móvil */
+    @media (max-width: 480px) {
+      .controls {
+        gap: 0.5rem;
+      }
+      .view-btn {
+        padding: 0.35rem 0.8rem;
+        font-size: 0.65rem;
+      }
+      .year-picker, .month-nav button, .month-nav span {
+        padding: 0.3rem 0.6rem;
+        font-size: 0.7rem;
+      }
+      .btn-primary-action {
+        padding: 0.35rem 1rem;
+        font-size: 0.7rem;
+      }
+      .day-cell {
+        min-height: 70px;
+        padding: 0.3rem;
+      }
+      .guardia-badge {
+        font-size: 0.55rem;
+        padding: 3px 4px;
+      }
+    }
+
+    .footer-logo-section {
+      background: #f8fafc;
+      padding: 0.75rem 1rem;
+      border-top: 1px solid #e9edf2;
+    }
+    .footer-logo-section > div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
@@ -549,7 +623,7 @@
 <div id="loginOverlay" class="login-modal">
   <div class="login-card">
     <img src="https://github.com/internalcontrolengineering/Desarrollos/blob/main/LogoCI-A.png?raw=true" alt="Control Interno">
-    <h3 style="font-size:1.4rem; color:#0a3a5c;">🔐 Acceso Corporativo</h3>
+    <h3 style="font-size:1.2rem; color:#0a3a5c;">🔐 Acceso Corporativo</h3>
     <select id="profileSelect" style="margin-top:1rem;">
       <option value="" disabled selected>-- Seleccione perfil --</option>
       <option value="control-interno">🛡️ Control Interno</option>
@@ -557,7 +631,7 @@
     </select>
     <input type="password" id="authPassword" placeholder="Contraseña">
     <button id="btnLogin" class="btn-primary" style="width:100%; margin-top:1rem;">Ingresar</button>
-    <div style="font-size:0.7rem; margin-top:1rem; color:#5a7f9e;">Control Interno: ControlInterno2026<br>Visitante: Visitante2026</div>
+    <div style="font-size:0.65rem; margin-top:1rem; color:#5a7f9e;">Control Interno: ControlInterno2026<br>Visitante: Visitante2026</div>
   </div>
 </div>
 
@@ -588,23 +662,23 @@
   </div>
   <div id="calendarView" class="calendar-container"></div>
   <footer>
-    <footer style="background: #f8fafc; padding: 0.75rem 1.5rem; border-top: 1px solid #e9edf2;">
-    <div style="display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;">
+    <div class="footer-logo-section">
+      <div>
         <img src="https://raw.githubusercontent.com/internalcontrolengineering/Desarrollos/main/LogoCI-G.png" 
              alt="Control Interno" 
-             style="height: 22px; width: auto; object-fit: contain; opacity: 0.5;">
-        <div style="width: 1px; height: 24px; background-color: #cbd5e1;"></div>
+             style="height: 20px; width: auto; object-fit: contain; opacity: 0.5;">
+        <div style="width: 1px; height: 20px; background-color: #cbd5e1;"></div>
         <div style="display: flex; flex-direction: column; line-height: 1.2;">
             <span style="font-size: 0.5rem; color: #0A2540;">Control Interno</span>
             <span style="font-size: 0.4rem; color: #94a3b8; font-weight: 500;">Ingeniería de Control</span>
         </div>
-        <div style="width: 1px; height: 24px; background-color: #cbd5e1;"></div>
+        <div style="width: 1px; height: 20px; background-color: #cbd5e1;"></div>
         <div style="display: flex; flex-direction: column; line-height: 1.2;">
             <span style="font-size: 0.5rem; color: #0A2540;">Hexus</span>
             <span style="font-size: 0.4rem; color: #94a3b8; font-weight: 500;">V1.0 | Mayo 2026</span>
         </div>
+      </div>
     </div>
-</footer>
     <div class="action-buttons">
       <button id="btnWhatsApp" class="action-btn whatsapp">📱 WhatsApp</button>
       <button id="btnEmail" class="action-btn email">✉️ Correo</button>
@@ -618,7 +692,7 @@
 
 <!-- MODALES -->
 <div id="historyModal" class="modal"><div class="modal-content"><h3>📜 Historial de cambios</h3><div id="historyContent"></div><div class="modal-buttons"><button id="closeHistoryBtn" class="btn-secondary">Cerrar</button><button id="editFromHistoryBtn" class="btn-primary">✏️ Editar guardia</button></div></div></div>
-<div id="guardiaModal" class="modal"><div class="modal-content"><h3 id="modalTitle">📌 Asignar Guardia</h3><div id="dateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px;">⚠️ Si cambias la fecha, la guardia se MOVERÁ</div><input type="date" id="modalDate" /><div style="display:flex; gap:8px;"><select id="personName" style="flex:1"></select><button type="button" id="btnGestionarPersonas" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px;">➕ Gestionar</button></div><input type="text" id="personPosition" placeholder="Puesto / Rol" readonly style="background:#f8fbfe;" /><div class="time-select-group"><div style="flex:1"><label>Entrada</label><div style="display:flex; gap:8px;"><select id="horaEntradaH"></select><select id="horaEntradaM"></select></div></div><div style="flex:1"><label>Salida</label><div style="display:flex; gap:8px;"><select id="horaSalidaH"></select><select id="horaSalidaM"></select></div></div></div><div><label>Color:</label><input type="color" id="personColor" value="#3b82f6" style="width:50px;" /><span id="colorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#3b82f6; vertical-align:middle; margin-left:12px;"></span></div><div class="modal-buttons"><button id="saveGuardiaBtn" class="btn-primary">Guardar</button><button id="cancelModalBtn" class="btn-secondary">Cancelar</button><button id="deleteGuardiaModalBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
+<div id="guardiaModal" class="modal"><div class="modal-content"><h3 id="modalTitle">📌 Asignar Guardia</h3><div id="dateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px; font-size:0.8rem;">⚠️ Si cambias la fecha, la guardia se MOVERÁ</div><input type="date" id="modalDate" /><div style="display:flex; gap:8px; flex-wrap:wrap;"><select id="personName" style="flex:1; min-width:150px;"></select><button type="button" id="btnGestionarPersonas" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px; white-space:nowrap;">➕ Gestionar</button></div><input type="text" id="personPosition" placeholder="Puesto / Rol" readonly style="background:#f8fbfe;" /><div class="time-select-group"><div style="flex:1"><label>Entrada</label><div style="display:flex; gap:8px;"><select id="horaEntradaH"></select><select id="horaEntradaM"></select></div></div><div style="flex:1"><label>Salida</label><div style="display:flex; gap:8px;"><select id="horaSalidaH"></select><select id="horaSalidaM"></select></div></div></div><div><label>Color:</label><input type="color" id="personColor" value="#3b82f6" style="width:50px;" /><span id="colorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#3b82f6; vertical-align:middle; margin-left:12px;"></span></div><div class="modal-buttons"><button id="saveGuardiaBtn" class="btn-primary">Guardar</button><button id="cancelModalBtn" class="btn-secondary">Cancelar</button><button id="deleteGuardiaModalBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
 <div id="personasModal" class="modal"><div class="modal-content"><h3>👥 Gestión de personas</h3><input type="text" id="nuevaPersonaNombre" placeholder="Nombre completo" /><input type="text" id="nuevaPersonaPuesto" placeholder="Puesto / Rol" /><button id="btnAgregarPersona" class="btn-primary" style="width:100%;">➕ Agregar persona</button><div id="listaPersonasContainer" class="personas-list" style="margin-top:1rem;"></div><div class="modal-buttons"><button id="closePersonasBtn" class="btn-secondary">Cerrar</button></div></div></div>
 <div id="apunteModal" class="modal"><div class="modal-content"><h3>📝 Nota / Apunte</h3><div id="apunteFecha"></div><input type="text" id="apunteTitulo" placeholder="Título de la nota (obligatorio)" style="margin-top:8px;" /><textarea id="apunteTexto" rows="4" placeholder="Escriba información adicional... (solo se redimensiona verticalmente)"></textarea><div class="modal-buttons"><button id="saveApunteBtn" class="btn-primary">Guardar</button><button id="cancelApunteBtn" class="btn-secondary">Cancelar</button><button id="deleteApunteBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
 
@@ -652,7 +726,6 @@
       document.getElementById('loginOverlay').style.display='flex'; 
       document.getElementById('authPassword').value=''; 
       document.getElementById('profileSelect').value=''; 
-      // Mostrar aviso dinámico al cerrar sesión
       await Swal.fire({title:'👋 Sesión cerrada',text:'Has cerrado sesión correctamente',icon:'info',timer:2000,showConfirmButton:false}); 
     } 
   }
@@ -829,7 +902,7 @@
   function saveApunteFromModal(){ let d=document.getElementById("apunteModal").getAttribute("data-current-date"); let titulo=document.getElementById("apunteTitulo").value.trim(); let texto=document.getElementById("apunteTexto").value; if(!titulo){ alert("El título de la nota es obligatorio"); return; } saveApunte(d,titulo,texto); closeApunteModal(); }
   function deleteApunteFromModal(){ let d=document.getElementById("apunteModal").getAttribute("data-current-date"); if(confirm("¿Eliminar esta nota?")){ removeApunte(d); closeApunteModal(); } }
   function renderCurrentView(){ if(currentView==="day") renderDayView(); else if(currentView==="month") renderMonthView(); else renderYearView(); updateNav(); saveToLocal(); }
-  function renderDayView(){ let cont=document.getElementById("calendarView"), d=currentSelectedDate, g=guards.get(d), sat=isSaturday(d), h=horarios.get(d), a=apuntes.get(d); cont.innerHTML=`<div style="background:white; border-radius:1.5rem; padding:1.5rem;"><h2 style="color:#1a5d8c;">${new Date(d).toLocaleDateString('es-ES',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</h2><div style="margin:1rem 0; padding:1rem; background:#f5faff; border-radius:1rem;"><span style="background:${sat?'#e2f0e8':'#feeceb'}; padding:4px 14px; border-radius:40px;">${sat?'✅ SÁBADO':'❌ '+getDayOfWeekSpanish(d)}</span>${g?`<div style="margin-top:1rem; border-left:4px solid ${g.color}; padding:12px; background:${g.color}08; border-radius:1rem;" onclick="showHistoryModal('${d}')"><strong>👤 ${g.personName}</strong> · ${g.position}${h?`<br>🕒 ${h.entrada} - ${h.salida}`:''}<div style="margin-top:6px;">📜 ${g.history?.length||0} cambios</div></div>`:'<div style="margin-top:1rem;">⚡ Sin guardia asignada</div>'}${a?`<div style="margin-top:12px; background:#fff0e0; padding:8px; border-radius:1rem;"><strong>📌 ${escapeHtml(a.titulo)}</strong><br>${escapeHtml(a.texto.substring(0,150))}${a.texto.length>150?'...':''}</div>`:''}<div style="margin-top:24px; display:flex; gap:12px;"><button id="dayPrev" class="btn-secondary">◀ Anterior</button><button id="dayNext" class="btn-secondary">Siguiente ▶</button>${sat&&!soloLectura?'<button id="dayEdit" class="btn-primary">✏️ Editar</button>':''}${!soloLectura?'<button id="dayApunte" class="btn-secondary">📝 Editar/Agregar nota</button>':(a?'<button id="dayApunteViewOnly" class="btn-secondary" style="background:#f0f4fa;">📄 Ver nota</button>':'')}</div></div></div>`; document.getElementById("dayPrev")?.addEventListener("click",()=>{ let nd=new Date(currentSelectedDate); nd.setDate(nd.getDate()-1); currentSelectedDate=nd.toISOString().slice(0,10); renderCurrentView(); }); document.getElementById("dayNext")?.addEventListener("click",()=>{ let nd=new Date(currentSelectedDate); nd.setDate(nd.getDate()+1); currentSelectedDate=nd.toISOString().slice(0,10); renderCurrentView(); }); document.getElementById("dayEdit")?.addEventListener("click",()=>openModalForDate(currentSelectedDate)); let dayApunte=document.getElementById("dayApunte"); if(dayApunte) dayApunte.addEventListener("click",()=>openApunteModal(currentSelectedDate)); let dayViewOnly=document.getElementById("dayApunteViewOnly"); if(dayViewOnly) dayViewOnly.addEventListener("click",()=>{ let aTemp=apuntes.get(currentSelectedDate); if(aTemp) Swal.fire({title:aTemp.titulo,text:aTemp.texto||"Sin contenido adicional",icon:"info",confirmButtonColor:"#1a5d8c"}); else alert("No hay nota registrada"); }); }
+  function renderDayView(){ let cont=document.getElementById("calendarView"), d=currentSelectedDate, g=guards.get(d), sat=isSaturday(d), h=horarios.get(d), a=apuntes.get(d); cont.innerHTML=`<div style="background:white; border-radius:1.5rem; padding:1rem;"><h2 style="color:#1a5d8c; font-size:1.2rem;">${new Date(d).toLocaleDateString('es-ES',{weekday:'long',year:'numeric',month:'long',day:'numeric'})}</h2><div style="margin:1rem 0; padding:1rem; background:#f5faff; border-radius:1rem;"><span style="background:${sat?'#e2f0e8':'#feeceb'}; padding:4px 14px; border-radius:40px;">${sat?'✅ SÁBADO':'❌ '+getDayOfWeekSpanish(d)}</span>${g?`<div style="margin-top:1rem; border-left:4px solid ${g.color}; padding:12px; background:${g.color}08; border-radius:1rem;" onclick="showHistoryModal('${d}')"><strong>👤 ${g.personName}</strong> · ${g.position}${h?`<br>🕒 ${h.entrada} - ${h.salida}`:''}<div style="margin-top:6px;">📜 ${g.history?.length||0} cambios</div></div>`:'<div style="margin-top:1rem;">⚡ Sin guardia asignada</div>'}${a?`<div style="margin-top:12px; background:#fff0e0; padding:8px; border-radius:1rem;"><strong>📌 ${escapeHtml(a.titulo)}</strong><br>${escapeHtml(a.texto.substring(0,150))}${a.texto.length>150?'...':''}</div>`:''}<div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;"><button id="dayPrev" class="btn-secondary">◀ Anterior</button><button id="dayNext" class="btn-secondary">Siguiente ▶</button>${sat&&!soloLectura?'<button id="dayEdit" class="btn-primary">✏️ Editar</button>':''}${!soloLectura?'<button id="dayApunte" class="btn-secondary">📝 Editar/Agregar nota</button>':(a?'<button id="dayApunteViewOnly" class="btn-secondary" style="background:#f0f4fa;">📄 Ver nota</button>':'')}</div></div></div>`; document.getElementById("dayPrev")?.addEventListener("click",()=>{ let nd=new Date(currentSelectedDate); nd.setDate(nd.getDate()-1); currentSelectedDate=nd.toISOString().slice(0,10); renderCurrentView(); }); document.getElementById("dayNext")?.addEventListener("click",()=>{ let nd=new Date(currentSelectedDate); nd.setDate(nd.getDate()+1); currentSelectedDate=nd.toISOString().slice(0,10); renderCurrentView(); }); document.getElementById("dayEdit")?.addEventListener("click",()=>openModalForDate(currentSelectedDate)); let dayApunte=document.getElementById("dayApunte"); if(dayApunte) dayApunte.addEventListener("click",()=>openApunteModal(currentSelectedDate)); let dayViewOnly=document.getElementById("dayApunteViewOnly"); if(dayViewOnly) dayViewOnly.addEventListener("click",()=>{ let aTemp=apuntes.get(currentSelectedDate); if(aTemp) Swal.fire({title:aTemp.titulo,text:aTemp.texto||"Sin contenido adicional",icon:"info",confirmButtonColor:"#1a5d8c"}); else alert("No hay nota registrada"); }); }
   function renderMonthView(){ let y=currentYear,m=currentMonth,firstDay=new Date(y,m,1),startOffset=firstDay.getDay(),daysInMonth=new Date(y,m+1,0).getDate(),prevMonthDays=new Date(y,m,0).getDate(),html=`<div class="calendar-grid"><div class="weekdays"><span>DOM</span><span>LUN</span><span>MAR</span><span>MIÉ</span><span>JUE</span><span>VIE</span><span>SÁB</span></div><div class="days-grid">`; for(let i=0;i<42;i++){ let dayNumber,isCurrent=true,yearFor,monthFor; if(i<startOffset){ dayNumber=prevMonthDays-(startOffset-i)+1; isCurrent=false; let pm=m-1,py=y; if(pm<0){ pm=11; py--; } yearFor=py; monthFor=pm; } else if(i>=startOffset+daysInMonth){ dayNumber=i-(startOffset+daysInMonth)+1; isCurrent=false; let nm=m+1,ny=y; if(nm>11){ nm=0; ny++; } yearFor=ny; monthFor=nm; } else { dayNumber=i-startOffset+1; yearFor=y; monthFor=m; } let dateStr=`${yearFor}-${String(monthFor+1).padStart(2,'0')}-${String(dayNumber).padStart(2,'0')}`,g=guards.get(dateStr),sat=isSaturday(dateStr),h=horarios.get(dateStr),a=apuntes.get(dateStr); let badge=''; if(g){ badge=`<div class="guardia-badge" data-date="${dateStr}">👤 ${g.personName}<br><small>${g.position}</small>${g.history?.length?' 📜':''}</div>`; if(h) badge+=`<div class="horario-badge">🕒 ${h.entrada}-${h.salida}</div>`; } else if(sat&&isCurrent) badge=`<div class="saturday-badge">📌 Sábado</div>`; if(a){ let tituloCorto=a.titulo.length>20?a.titulo.substring(0,18)+'...':a.titulo; badge+=`<div class="apunte-badge" data-apunte="${dateStr}" title="${escapeHtml(a.titulo)}: ${escapeHtml(a.texto)}">📝 ${escapeHtml(tituloCorto)}</div>`; } html+=`<div class="day-cell ${!isCurrent?'other-month':''}" data-date="${dateStr}"><div class="day-number">${dayNumber}</div>${badge}</div>`; } html+=`</div></div>`; document.getElementById("calendarView").innerHTML=html; document.querySelectorAll('.day-cell').forEach(cell=>{ let date=cell.dataset.date; cell.addEventListener('click',(e)=>{ if(e.target.closest('.guardia-badge')) return; if(e.target.closest('.apunte-badge')){ if(soloLectura){ let nota=apuntes.get(date); if(nota) Swal.fire({title:nota.titulo,text:nota.texto||"Sin contenido",icon:"info",confirmButtonColor:"#1a5d8c"}); else alert("Nota no encontrada"); } else openApunteModal(date); return; } if(isSaturday(date)){ let g=guards.get(date); if(g&&!soloLectura) openModalForDate(date); else if(!g&&!soloLectura) openModalForDate(date); else if(g&&soloLectura) showHistoryModal(date); } else if(!soloLectura) openApunteModal(date); else { let nota=apuntes.get(date); if(nota) Swal.fire({title:nota.titulo,text:nota.texto||"Sin contenido",icon:"info"}); } }); }); document.querySelectorAll('.guardia-badge').forEach(b=>b.addEventListener('click',(e)=>{ e.stopPropagation(); showHistoryModal(b.dataset.date); })); }
   function renderYearView(){ let y=currentYear,html=`<div class="year-view-grid">`; for(let m=0;m<12;m++){ let monthName=new Date(y,m,1).toLocaleString('es',{month:'long'}),daysInMonth=new Date(y,m+1,0).getDate(),saturdays=[]; for(let d=1;d<=daysInMonth;d++){ let ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; if(isSaturday(ds)){ let g=guards.get(ds),h=horarios.get(ds),a=apuntes.get(ds); saturdays.push({day:d,guard:g?g.personName:null,position:g?.position,color:g?.color,dateStr:ds,horarioTexto:h?`${h.entrada} - ${h.salida}`:null,notaTitulo:a?a.titulo:null}); } } html+=`<div class="month-card"><div class="month-title">${monthName.toUpperCase()}</div>`; saturdays.forEach(s=>{ html+=`<div style="margin:6px 0; padding:8px; border-radius:14px; background:${s.guard?(s.color+'15'):'#f9fbfe'}; cursor:pointer;" onclick="showHistoryModal('${s.dateStr}')"><strong>${s.day}</strong> · ${s.guard||'🔘 Sin asignar'}${s.guard&&s.horarioTexto?`<div style="font-size:0.65rem; margin-top:3px;">🕒 ${s.horarioTexto}</div>`:''}${s.notaTitulo?`<div style="font-size:0.6rem; margin-top:3px; color:#c26b1a;">📌 ${escapeHtml(s.notaTitulo)}</div>`:''}</div>`; }); html+=`</div>`; } html+=`</div>`; document.getElementById("calendarView").innerHTML=html; }
   let currentEditOriginalDate=null;
