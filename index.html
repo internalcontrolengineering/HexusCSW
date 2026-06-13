@@ -692,7 +692,7 @@
 
 <!-- MODALES -->
 <div id="historyModal" class="modal"><div class="modal-content"><h3>📜 Historial de cambios</h3><div id="historyContent"></div><div class="modal-buttons"><button id="closeHistoryBtn" class="btn-secondary">Cerrar</button><button id="editFromHistoryBtn" class="btn-primary">✏️ Editar guardia</button></div></div></div>
-<div id="guardiaModal" class="modal"><div class="modal-content"><h3 id="modalTitle">📌 Asignar Guardia</h3><div id="dateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px; font-size:0.8rem;">⚠️ Si cambias la fecha, la guardia se MOVERÁ</div><input type="date" id="modalDate" /><div style="display:flex; gap:8px; flex-wrap:wrap;"><select id="personName" style="flex:1; min-width:150px;"></select><button type="button" id="btnGestionarPersonas" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px; white-space:nowrap;">➕ Gestionar</button></div><input type="text" id="personPosition" placeholder="Puesto / Rol" readonly style="background:#f8fbfe;" /><div class="time-select-group"><div style="flex:1"><label>Entrada</label><div style="display:flex; gap:8px;"><select id="horaEntradaH"></select><select id="horaEntradaM"></select></div></div><div style="flex:1"><label>Salida</label><div style="display:flex; gap:8px;"><select id="horaSalidaH"></select><select id="horaSalidaM"></select></div></div></div><div><label>Color:</label><input type="color" id="personColor" value="#3b82f6" style="width:50px;" /><span id="colorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#3b82f6; vertical-align:middle; margin-left:12px;"></span></div><div class="modal-buttons"><button id="saveGuardiaBtn" class="btn-primary">Guardar</button><button id="cancelModalBtn" class="btn-secondary">Cancelar</button><button id="deleteGuardiaModalBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
+<div id="guardiaModal" class="modal"><div class="modal-content"><h3 id="modalTitle">📌 Asignar Guardia</h3><div id="dateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px; font-size:0.8rem;">⚠️ Si cambias la fecha, la guardia se MOVERÁ</div><input type="date" id="modalDate" /><div style="display:flex; gap:8px; flex-wrap:wrap;"><select id="personName" style="flex:1; min-width:150px;"></select><button type="button" id="btnGestionarPersonas" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px; white-space:nowrap;">➕ Gestionar</button></div><input type="text" id="personPosition" placeholder="Puesto / Rol" readonly style="background:#f8fbfe;" /><div class="time-select-group"><div style="flex:1"><label>Entrada (opcional)</label><div style="display:flex; gap:8px;"><select id="horaEntradaH"></select><select id="horaEntradaM"></select></div></div><div style="flex:1"><label>Salida (opcional)</label><div style="display:flex; gap:8px;"><select id="horaSalidaH"></select><select id="horaSalidaM"></select></div></div></div><div><label>Color:</label><input type="color" id="personColor" value="#3b82f6" style="width:50px;" /><span id="colorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#3b82f6; vertical-align:middle; margin-left:12px;"></span></div><div class="modal-buttons"><button id="saveGuardiaBtn" class="btn-primary">Guardar</button><button id="cancelModalBtn" class="btn-secondary">Cancelar</button><button id="deleteGuardiaModalBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
 <div id="personasModal" class="modal"><div class="modal-content"><h3>👥 Gestión de personas</h3><input type="text" id="nuevaPersonaNombre" placeholder="Nombre completo" /><input type="text" id="nuevaPersonaPuesto" placeholder="Puesto / Rol" /><button id="btnAgregarPersona" class="btn-primary" style="width:100%;">➕ Agregar persona</button><div id="listaPersonasContainer" class="personas-list" style="margin-top:1rem;"></div><div class="modal-buttons"><button id="closePersonasBtn" class="btn-secondary">Cerrar</button></div></div></div>
 <div id="apunteModal" class="modal"><div class="modal-content"><h3>📝 Nota / Apunte</h3><div id="apunteFecha"></div><input type="text" id="apunteTitulo" placeholder="Título de la nota (obligatorio)" style="margin-top:8px;" /><textarea id="apunteTexto" rows="4" placeholder="Escriba información adicional... (solo se redimensiona verticalmente)"></textarea><div class="modal-buttons"><button id="saveApunteBtn" class="btn-primary">Guardar</button><button id="cancelApunteBtn" class="btn-secondary">Cancelar</button><button id="deleteApunteBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
 
@@ -730,14 +730,89 @@
     } 
   }
   window.addEventListener('beforeunload',()=>{ if(perfilActual) sessionStorage.setItem('sesionActiva','true'); });
-  function isSaturday(d){ let p=d.split('-'); let date=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2])); return date.getDay()===6; }
-  function getDayOfWeekSpanish(d){ let p=d.split('-'),date=new Date(parseInt(p[0]),parseInt(p[1])-1,parseInt(p[2])); return ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'][date.getDay()]; }
-  let guards=new Map(), horarios=new Map(), apuntes=new Map(); // apunte estructura: { titulo, texto, fechaCreacion }
+  
+  // ==================== FUNCIONES CORREGIDAS ====================
+  // Función isSaturday CORREGIDA - usa UTC para evitar problemas de zona horaria
+  function isSaturday(d) {
+    let partes = d.split('-');
+    let fecha = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
+    return fecha.getUTCDay() === 6;
+  }
+  
+  // Función getDayOfWeekSpanish CORREGIDA - usa UTC
+  function getDayOfWeekSpanish(d) {
+    let partes = d.split('-');
+    let fecha = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
+    let dias = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+    return dias[fecha.getUTCDay()];
+  }
+  
+  // Función generarMensajeGuardias CORREGIDA - muestra correctamente los sábados
+  function generarMensajeGuardias(nom, lista) {
+    let msg = `📋 *GUARDIAS DE ${nom.toUpperCase()}*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    if (lista.length === 0) {
+      msg += `❌ Sin guardias asignadas\n\n`;
+    } else {
+      lista.forEach(g => {
+        // Usar UTC para formatear la fecha correctamente
+        let partes = g.fecha.split('-');
+        let fechaObj = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
+        let fd = fechaObj.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+        let diaSemana = getDayOfWeekSpanish(g.fecha);
+        // Mostrar siempre el día real de la semana (debe ser sábado si los datos son correctos)
+        msg += `📌 ${fd} (${diaSemana})\n   👤 ${g.puesto}\n   🕒 ${g.horario}\n\n`;
+      });
+    }
+    
+    msg += `━━━━━━━━━━━━━━━━━━━━\n📝 *NOTAS PENDIENTES (POR MES)*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    let fechas = Array.from(apuntes.keys()).filter(f => apuntes.get(f)).sort((a, b) => {
+      let pa = a.split('-'), pb = b.split('-');
+      return new Date(Date.UTC(parseInt(pa[0]), parseInt(pa[1]) - 1, parseInt(pa[2]))) - new Date(Date.UTC(parseInt(pb[0]), parseInt(pb[1]) - 1, parseInt(pb[2])));
+    });
+    
+    if (fechas.length === 0) {
+      msg += `✅ Sin notas registradas\n\n`;
+    } else {
+      let porMes = {};
+      fechas.forEach(f => {
+        let partes = f.split('-');
+        let d = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
+        let m = d.toLocaleDateString('es-ES', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+        if (!porMes[m]) porMes[m] = [];
+        let nota = apuntes.get(f);
+        let tituloMostrar = nota.titulo && nota.titulo.trim() ? nota.titulo : "(Sin título)";
+        porMes[m].push({
+          dia: d.getUTCDate(),
+          ds: getDayOfWeekSpanish(f),
+          tit: tituloMostrar,
+          txt: nota.texto || ''
+        });
+      });
+      for (let [m, notas] of Object.entries(porMes)) {
+        msg += `📆 *${m.toUpperCase()}*\n────────────────\n`;
+        notas.forEach(n => {
+          msg += `   📌 Día ${n.dia} (${n.ds}): ${n.tit}\n`;
+          if (n.txt) {
+            let t = n.txt.length > 60 ? n.txt.substring(0, 60) + '...' : n.txt;
+            msg += `      📝 ${t}\n`;
+          }
+          msg += `\n`;
+        });
+      }
+    }
+    
+    msg += `━━━━━━━━━━━━━━━━━━━━\n📱 Hexus · Gestión de Guardias\n⏰ ${new Date().toLocaleString('es-ES')}`;
+    return msg;
+  }
+  
+  let guards=new Map(), horarios=new Map(), apuntes=new Map();
   let currentView="month", currentYear=new Date().getFullYear(), currentMonth=new Date().getMonth(), currentSelectedDate=new Date().toISOString().slice(0,10), personasRegistradas=new Map();
   function getColorForPerson(n){ let pal=["#3b82f6","#f97316","#10b981","#8b5cf6","#ec489a","#06b6d4","#ef4444","#84cc16","#f59e0b","#6366f1"],h=0; for(let i=0;i<n.length;i++) h=((h<<5)-h)+n.charCodeAt(i); return pal[Math.abs(h)%pal.length]; }
   function llenarSelectoresHorario(eH,eM,sH,sM){ let hS=document.getElementById("horaEntradaH"),mS=document.getElementById("horaEntradaM"),hSS=document.getElementById("horaSalidaH"),mSS=document.getElementById("horaSalidaM"); if(hS){ hS.innerHTML='<option value="">Hora</option>'; for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eH===String(i).padStart(2,'0')) o.selected=true; hS.appendChild(o); } } if(mS){ mS.innerHTML='<option value="">Min</option>'; for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eM===String(i).padStart(2,'0')) o.selected=true; mS.appendChild(o); } } if(hSS){ hSS.innerHTML=''; for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sH===String(i).padStart(2,'0')) o.selected=true; hSS.appendChild(o); } } if(mSS){ mSS.innerHTML=''; for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sM===String(i).padStart(2,'0')) o.selected=true; mSS.appendChild(o); } } }
   function validarHorario(eH,eM,sH,sM){ if(!eH||!eM||!sH||!sM) return true; let e=parseInt(eH)*60+parseInt(eM), s=parseInt(sH)*60+parseInt(sM); return s>e; }
-  function saveGuardiaWithOptionalMove(orig,newD,name,pos,col,ent,sal){ if(!name||name.trim()===""){ alert("Nombre obligatorio"); return false; } if(!isSaturday(newD)){ alert(`❌ ${newD} es ${getDayOfWeekSpanish(newD)}. Solo sábados.`); return false; } if(ent&&sal){ let [eh,em]=ent.split(':'),[sh,sm]=sal.split(':'); if(!validarHorario(eh,em,sh,sm)){ alert("Salida debe ser posterior"); return false; } } let cName=name.trim(),cPos=pos?pos.trim():"Sin especificar",fCol=col||getColorForPerson(cName),existNew=guards.get(newD),moving=(orig&&orig!==newD); if(ent&&sal) horarios.set(newD,{entrada:ent,salida:sal}); if(moving){ let origG=guards.get(orig); if(!origG) return createNewGuardia(newD,cName,cPos,fCol,ent,sal); if(existNew&&orig!==newD){ if(!confirm(`⚠️ Ya existe guardia de ${existNew.personName} el ${newD}. ¿Reemplazar?`)) return false; } let newHist=[...(origG.history||[])]; newHist.push({type:"movimiento",previousDate:orig,previousPerson:origG.personName,previousPosition:origG.position,newDate:newD,newPerson:cName,changedAt:new Date().toISOString(),description:`Movimiento ${orig} → ${newD}`}); if(origG.personName!==cName||origG.position!==cPos||origG.color!==fCol) newHist.push({type:"edición",previousDate:newD,previousPerson:origG.personName,changedAt:new Date().toISOString(),newPerson:cName,description:`Edición: ${origG.personName} → ${cName}`}); guards.set(newD,{personName:cName,position:cPos,color:fCol,history:newHist}); guards.delete(orig); renderCurrentView(); alert(`✅ MOVIDA de ${orig} a ${newD}`); return true; } else if(orig&&orig===newD){ let ex=guards.get(newD); let hist=ex?[...(ex.history||[])]:[]; if(ex&&(ex.personName!==cName||ex.position!==cPos||ex.color!==fCol)) hist.push({type:"edición",previousDate:newD,previousPerson:ex.personName,changedAt:new Date().toISOString(),newPerson:cName,description:`Edición: ${ex.personName} → ${cName}`}); guards.set(newD,{personName:cName,position:cPos,color:fCol,history:hist}); renderCurrentView(); alert(`✅ Actualizada en ${newD}`); return true; } else return createNewGuardia(newD,cName,cPos,fCol,ent,sal); }
+  function saveGuardiaWithOptionalMove(orig,newD,name,pos,col,ent,sal){ if(!name||name.trim()===""){ alert("Nombre obligatorio"); return false; } if(!isSaturday(newD)){ alert(`❌ ${newD} es ${getDayOfWeekSpanish(newD)}. Solo sábados.`); return false; } if(ent&&sal){ let [eh,em]=ent.split(':'),[sh,sm]=sal.split(':'); if(!validarHorario(eh,em,sh,sm)){ alert("Salida debe ser posterior"); return false; } } let cName=name.trim(),cPos=pos?pos.trim():"Sin especificar",fCol=col||getColorForPerson(cName),existNew=guards.get(newD),moving=(orig&&orig!==newD); if(ent&&sal) horarios.set(newD,{entrada:ent,salida:sal}); else if(horarios.has(newD) && !ent && !sal) horarios.delete(newD); if(moving){ let origG=guards.get(orig); if(!origG) return createNewGuardia(newD,cName,cPos,fCol,ent,sal); if(existNew&&orig!==newD){ if(!confirm(`⚠️ Ya existe guardia de ${existNew.personName} el ${newD}. ¿Reemplazar?`)) return false; } let newHist=[...(origG.history||[])]; newHist.push({type:"movimiento",previousDate:orig,previousPerson:origG.personName,previousPosition:origG.position,newDate:newD,newPerson:cName,changedAt:new Date().toISOString(),description:`Movimiento ${orig} → ${newD}`}); if(origG.personName!==cName||origG.position!==cPos||origG.color!==fCol) newHist.push({type:"edición",previousDate:newD,previousPerson:origG.personName,changedAt:new Date().toISOString(),newPerson:cName,description:`Edición: ${origG.personName} → ${cName}`}); guards.set(newD,{personName:cName,position:cPos,color:fCol,history:newHist}); guards.delete(orig); renderCurrentView(); alert(`✅ MOVIDA de ${orig} a ${newD}`); return true; } else if(orig&&orig===newD){ let ex=guards.get(newD); let hist=ex?[...(ex.history||[])]:[]; if(ex&&(ex.personName!==cName||ex.position!==cPos||ex.color!==fCol)) hist.push({type:"edición",previousDate:newD,previousPerson:ex.personName,changedAt:new Date().toISOString(),newPerson:cName,description:`Edición: ${ex.personName} → ${cName}`}); guards.set(newD,{personName:cName,position:cPos,color:fCol,history:hist}); renderCurrentView(); alert(`✅ Actualizada en ${newD}`); return true; } else return createNewGuardia(newD,cName,cPos,fCol,ent,sal); }
   function createNewGuardia(d,n,p,c,ent,sal){ if(guards.has(d)&&!confirm(`Ya existe guardia en ${d}. ¿Sobrescribir?`)) return false; guards.set(d,{personName:n,position:p,color:c,history:[]}); if(ent&&sal) horarios.set(d,{entrada:ent,salida:sal}); renderCurrentView(); alert(`✅ Creada en ${d}`); return true; }
   function removeGuardia(d){ if(guards.has(d)){ guards.delete(d); horarios.delete(d); renderCurrentView(); return true; } return false; }
   function saveApunte(d,titulo,texto){ if(!titulo || titulo.trim()===""){ alert("El título es obligatorio"); return false; } apuntes.set(d,{ titulo: titulo.trim(), texto: texto.trim() || "", fechaCreacion: new Date().toLocaleString() }); renderCurrentView(); saveToLocal(); alert("✅ Nota guardada"); return true; }
@@ -748,9 +823,7 @@
   function guardarPersonas(){ localStorage.setItem("personasRegistradas",JSON.stringify(Array.from(personasRegistradas.entries()))); actualizarSelectPersonas(); actualizarListaPersonasModal(); }
   function actualizarSelectPersonas(){ let sel=document.getElementById("personName"); if(!sel) return; let val=sel.value; sel.innerHTML='<option value="" disabled selected>-- Seleccionar persona --</option>'; for(let [nom,pue] of personasRegistradas.entries()){ let op=document.createElement("option"); op.value=nom; op.textContent=nom; if(val===nom) op.selected=true; sel.appendChild(op); } if(personasRegistradas.size>0&&(!sel.value||sel.value==="")){ let first=Array.from(personasRegistradas.keys())[0]; sel.value=first; document.getElementById("personPosition").value=personasRegistradas.get(first)||""; } }
   
-  // Función para editar persona (nombre y puesto) con doble clic
   function habilitarEdicionPersona(elementoNombre, elementoPuesto, nombreOriginal, puestoOriginal) {
-      // Crear inputs para edición
       const inputNombre = document.createElement('input');
       inputNombre.type = 'text';
       inputNombre.value = nombreOriginal;
@@ -761,8 +834,7 @@
       inputPuesto.value = puestoOriginal;
       inputPuesto.className = 'input-editar-puesto';
       
-      const contenedorInfo = elementoNombre.parentElement; // .persona-info
-      // Guardar el contenido original para restaurar si se cancela
+      const contenedorInfo = elementoNombre.parentElement;
       const originalHTML = contenedorInfo.innerHTML;
       
       contenedorInfo.innerHTML = '';
@@ -780,33 +852,26 @@
               alert("Ya existe una persona con ese nombre");
               return;
           }
-          // Actualizar el Map
           if (nuevoNombre !== nombreOriginal) {
-              // Cambiar nombre en el Map
               personasRegistradas.set(nuevoNombre, nuevoPuesto);
               personasRegistradas.delete(nombreOriginal);
-              // Actualizar todas las guardias que tengan este nombre
               for (let [fecha, guardia] of guards.entries()) {
                   if (guardia.personName === nombreOriginal) {
                       guardia.personName = nuevoNombre;
-                      // Actualizar color opcionalmente
                       guardia.color = getColorForPerson(nuevoNombre);
                       guards.set(fecha, guardia);
                   }
               }
           } else {
-              // Solo actualizar puesto
               personasRegistradas.set(nombreOriginal, nuevoPuesto);
           }
           guardarPersonas();
           renderCurrentView();
-          // Refrescar el modal para mostrar los datos actualizados
           actualizarListaPersonasModal();
       };
       
       const cancelarEdicion = () => {
           contenedorInfo.innerHTML = originalHTML;
-          // Volver a asignar eventos de doble clic a los nuevos elementos
           const nuevoNombreSpan = contenedorInfo.querySelector('.persona-nombre');
           const nuevoPuestoSpan = contenedorInfo.querySelector('.persona-puesto');
           if (nuevoNombreSpan && nuevoPuestoSpan) {
@@ -819,7 +884,6 @@
       inputPuesto.addEventListener('blur', guardarEdicion);
       inputNombre.addEventListener('keypress', (e) => { if (e.key === 'Enter') guardarEdicion(); });
       inputPuesto.addEventListener('keypress', (e) => { if (e.key === 'Enter') guardarEdicion(); });
-      // Opcional: permitir cancelar con Escape
       inputNombre.addEventListener('keydown', (e) => { if (e.key === 'Escape') cancelarEdicion(); });
       inputPuesto.addEventListener('keydown', (e) => { if (e.key === 'Escape') cancelarEdicion(); });
       
@@ -844,7 +908,6 @@
                  </div>`; 
       } 
       cont.innerHTML=html; 
-      // Agregar eventos de doble clic a cada elemento de nombre y puesto
       document.querySelectorAll('.persona-info').forEach(info => {
           const nombreSpan = info.querySelector('.persona-nombre');
           const puestoSpan = info.querySelector('.persona-puesto');
@@ -865,15 +928,13 @@
   function agregarNuevaPersona(){ let nom=document.getElementById("nuevaPersonaNombre").value.trim(), pue=document.getElementById("nuevaPersonaPuesto").value.trim(); if(!nom||!pue){ alert("Complete ambos campos"); return; } if(personasRegistradas.has(nom)){ alert("Ya existe"); return; } personasRegistradas.set(nom,pue); guardarPersonas(); document.getElementById("nuevaPersonaNombre").value=""; document.getElementById("nuevaPersonaPuesto").value=""; alert(`✅ "${nom}" agregado`); }
   function onPersonaSeleccionada(){ let s=document.getElementById("personName"); if(s.value&&personasRegistradas.has(s.value)) document.getElementById("personPosition").value=personasRegistradas.get(s.value); else document.getElementById("personPosition").value=""; }
   function obtenerPersonasConGuardias(){ let map=new Map(); for(let [f,g] of guards.entries()){ let h=horarios.get(f); if(!map.has(g.personName)) map.set(g.personName,[]); map.get(g.personName).push({fecha:f,puesto:g.position,horario:h?`${h.entrada} - ${h.salida}`:'Sin horario'}); } return Array.from(map.entries()).sort((a,b)=>a[0].localeCompare(b[0])); }
-  function generarMensajeGuardias(nom,lista){ let msg=`📋 *GUARDIAS DE ${nom.toUpperCase()}*\n━━━━━━━━━━━━━━━━━━━━\n\n`; if(lista.length===0){ msg+=`❌ Sin guardias asignadas\n\n`; }else{ lista.forEach(g=>{ let fd=new Date(g.fecha).toLocaleDateString('es-ES',{day:'numeric',month:'long',year:'numeric'}); msg+=`📌 ${fd} (${getDayOfWeekSpanish(g.fecha)})\n   👤 ${g.puesto}\n   🕒 ${g.horario}\n\n`; }); } msg+=`━━━━━━━━━━━━━━━━━━━━\n📝 *NOTAS PENDIENTES (POR MES)*\n━━━━━━━━━━━━━━━━━━━━\n\n`; let fechas=Array.from(apuntes.keys()).filter(f=>apuntes.get(f)).sort((a,b)=>new Date(a)-new Date(b)); if(fechas.length===0){ msg+=`✅ Sin notas registradas\n\n`; }else{ let porMes={}; fechas.forEach(f=>{ let d=new Date(f); let m=d.toLocaleDateString('es-ES',{month:'long',year:'numeric'}); if(!porMes[m]) porMes[m]=[]; let nota=apuntes.get(f); let tituloMostrar=nota.titulo&&nota.titulo.trim()?nota.titulo:"(Sin título)"; porMes[m].push({dia:d.getDate(),ds:getDayOfWeekSpanish(f),tit:tituloMostrar,txt:nota.texto||''}); }); for(let[m,notas]of Object.entries(porMes)){ msg+=`📆 *${m.toUpperCase()}*\n────────────────\n`; notas.forEach(n=>{ msg+=`   📌 Día ${n.dia} (${n.ds}): ${n.tit}\n`; if(n.txt){ let t=n.txt.length>60?n.txt.substring(0,60)+'...':n.txt; msg+=`      📝 ${t}\n`; } msg+=`\n`; }); } } msg+=`━━━━━━━━━━━━━━━━━━━━\n📱 Hexus · Gestión de Guardias\n⏰ ${new Date().toLocaleString('es-ES')}`; return msg; }
+  
   function mostrarModalEnvio(tipo){ let personas=obtenerPersonasConGuardias(); if(personas.length===0){ Swal.fire('Sin datos','No hay guardias','warning'); return; } let div=document.createElement('div'); div.className='modal'; div.style.display='flex'; div.innerHTML=`<div class="modal-content"><h3>${tipo==='whatsapp'?'📱 Enviar WhatsApp':'✉️ Enviar Correo'}</h3><select id="personaSelect"><option value="" disabled selected>-- Seleccionar persona --</option>${personas.map(([n])=>`<option value="${n.replace(/"/g,'&quot;')}">${n}</option>`).join('')}</select><div class="modal-buttons"><button id="confirmarEnvio" class="btn-primary">Enviar</button><button id="cancelarEnvio" class="btn-secondary">Cancelar</button></div></div>`; document.body.appendChild(div); document.getElementById('confirmarEnvio').onclick=()=>{ let nom=document.getElementById('personaSelect').value; if(!nom){ Swal.fire('Error','Seleccione','warning'); return; } let msg=generarMensajeGuardias(nom,personas.find(([n])=>n===nom)[1]); if(tipo==='whatsapp') window.open(`https://web.whatsapp.com/send?text=${encodeURIComponent(msg)}`,'_blank'); else window.location.href=`mailto:?subject=${encodeURIComponent(`Guardias - ${nom}`)}&body=${encodeURIComponent(msg)}`; div.remove(); Swal.fire('Éxito',`Se abrió ${tipo==='whatsapp'?'WhatsApp':'correo'}`, 'success'); }; document.getElementById('cancelarEnvio').onclick=()=>div.remove(); }
   async function exportarJSON(){ 
   let data={version:"1.0",exportDate:new Date().toISOString(),guards:Array.from(guards.entries()),horarios:Array.from(horarios.entries()),apuntes:Array.from(apuntes.entries())}; 
   let str=JSON.stringify(data,null,2),blob=new Blob([str],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
   a.href=url;
   a.download=`Respaldo_guardias_${new Date().toISOString().slice(0,19).replace(/:/g,'-')}.json`;
-  
-  // Detectar si el navegador soporta showSaveFilePicker
   if ('showSaveFilePicker' in window) {
     try {
       let handle = await window.showSaveFilePicker({
@@ -887,7 +948,6 @@
       return;
     } catch(e) { if(e.name !== 'AbortError') console.log(e); }
   }
-  // Fallback para navegadores que no soportan la API
   document.body.appendChild(a);
   a.click();
   document.body.removeChild(a);
@@ -904,7 +964,6 @@
   
   function renderCurrentView(){ 
     if(currentView==="day") {
-      // Asegurar que currentSelectedDate sea una fecha válida
       if(!currentSelectedDate || currentSelectedDate === "") {
         let fecha = new Date(currentYear, currentMonth, 1);
         while(fecha.getDay() !== 6) {
@@ -922,7 +981,6 @@
     saveToLocal(); 
   }
   
-  // VISTA DE DÍA CORREGIDA
   function renderDayView(){ 
     let cont=document.getElementById("calendarView"), 
         d=currentSelectedDate, 
@@ -931,7 +989,6 @@
         h=horarios.get(d), 
         a=apuntes.get(d); 
     
-    // Verificar si la fecha es válida
     if(!d || d === "") {
       let fecha = new Date(currentYear, currentMonth, 1);
       while(fecha.getDay() !== 6) {
@@ -941,17 +998,16 @@
       currentSelectedDate = d;
     }
     
-    // Crear objeto de fecha correctamente usando parseInt
     let partes = d.split('-');
-    let fechaObj = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
+    let fechaObj = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2])));
     let fechaFormateada = fechaObj.toLocaleDateString('es-ES', {
       weekday: 'long', 
       year: 'numeric', 
       month: 'long', 
-      day: 'numeric'
+      day: 'numeric',
+      timeZone: 'UTC'
     });
     
-    // Capitalizar primera letra del día
     fechaFormateada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
     
     cont.innerHTML = `<div style="background:white; border-radius:1.5rem; padding:1rem;">
@@ -978,37 +1034,33 @@
       </div>
     </div>`;
     
-    // Evento para día anterior
     document.getElementById("dayPrev")?.addEventListener("click", (e) => {
       e.stopPropagation();
-      let nd = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
-      nd.setDate(nd.getDate() - 1);
-      let año = nd.getFullYear();
-      let mes = String(nd.getMonth() + 1).padStart(2, '0');
-      let dia = String(nd.getDate()).padStart(2, '0');
+      let nd = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2])));
+      nd.setUTCDate(nd.getUTCDate() - 1);
+      let año = nd.getUTCFullYear();
+      let mes = String(nd.getUTCMonth() + 1).padStart(2, '0');
+      let dia = String(nd.getUTCDate()).padStart(2, '0');
       currentSelectedDate = `${año}-${mes}-${dia}`;
       renderCurrentView();
     });
     
-    // Evento para día siguiente
     document.getElementById("dayNext")?.addEventListener("click", (e) => {
       e.stopPropagation();
-      let nd = new Date(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2]));
-      nd.setDate(nd.getDate() + 1);
-      let año = nd.getFullYear();
-      let mes = String(nd.getMonth() + 1).padStart(2, '0');
-      let dia = String(nd.getDate()).padStart(2, '0');
+      let nd = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1])-1, parseInt(partes[2])));
+      nd.setUTCDate(nd.getUTCDate() + 1);
+      let año = nd.getUTCFullYear();
+      let mes = String(nd.getUTCMonth() + 1).padStart(2, '0');
+      let dia = String(nd.getUTCDate()).padStart(2, '0');
       currentSelectedDate = `${año}-${mes}-${dia}`;
       renderCurrentView();
     });
     
-    // Evento para editar guardia
     document.getElementById("dayEdit")?.addEventListener("click", (e) => {
       e.stopPropagation();
       openModalForDate(currentSelectedDate);
     });
     
-    // Evento para editar/agregar nota
     let dayApunte = document.getElementById("dayApunte");
     if(dayApunte) {
       dayApunte.addEventListener("click", (e) => {
@@ -1017,7 +1069,6 @@
       });
     }
     
-    // Evento para ver nota (solo lectura)
     let dayViewOnly = document.getElementById("dayApunteViewOnly");
     if(dayViewOnly) {
       dayViewOnly.addEventListener("click", (e) => {
@@ -1078,11 +1129,8 @@
           return; 
         } 
         
-        // CORRECCIÓN: Para sábados, actualizar currentSelectedDate ANTES de abrir modal o historial
         if(isSat){ 
-          // Actualizar la fecha seleccionada actual
           currentSelectedDate = date;
-          
           let g=guards.get(date); 
           if(g && !soloLectura) { 
             openModalForDate(date); 
@@ -1091,7 +1139,6 @@
           } else if(g && soloLectura) { 
             showHistoryModal(date); 
           } else if(!g && soloLectura) {
-            // Si es sábado sin guardia y es visitante, solo mostrar mensaje
             Swal.fire({
               title: "Sin guardia",
               text: `El ${date} (${getDayOfWeekSpanish(date)}) no tiene guardia asignada`,
@@ -1111,7 +1158,7 @@
     document.querySelectorAll('.guardia-badge').forEach(b=>b.addEventListener('click',(e)=>{ 
       e.stopPropagation(); 
       let fecha = b.dataset.date;
-      currentSelectedDate = fecha; // También actualizar aquí
+      currentSelectedDate = fecha;
       showHistoryModal(fecha); 
     })); 
   }
@@ -1138,9 +1185,9 @@
   }
   
   let currentEditOriginalDate=null;
-  function openModalForDate(d){ actualizarSelectPersonas(); if(soloLectura){ alert("Perfil Visitante: solo consulta"); return; } if(!isSaturday(d)){ alert("Solo sábados"); return; } let modal=document.getElementById("guardiaModal"); document.getElementById("modalDate").value=d; currentEditOriginalDate=d; let ex=guards.get(d),exH=horarios.get(d); let eH='',eM='',sH='',sM=''; if(exH){ let [h1,m1]=exH.entrada.split(':'),[h2,m2]=exH.salida.split(':'); eH=h1; eM=m1; sH=h2; sM=m2; } llenarSelectoresHorario(eH,eM,sH,sM); if(ex){ document.getElementById("modalTitle").innerText="✏️ Editar Guardia (puedes cambiar fecha)"; if(personasRegistradas.has(ex.personName)){ document.getElementById("personName").value=ex.personName; document.getElementById("personPosition").value=personasRegistradas.get(ex.personName)||ex.position; } else { document.getElementById("personName").value=ex.personName; document.getElementById("personPosition").value=ex.position||""; } document.getElementById("personColor").value=ex.color; document.getElementById("colorPreview").style.background=ex.color; document.getElementById("deleteGuardiaModalBtn").style.display="inline-block"; document.getElementById("dateChangeWarning").style.display="block"; } else { document.getElementById("modalTitle").innerText="➕ Nueva Guardia (Sábado)"; document.getElementById("personName").value=""; document.getElementById("personPosition").value=""; document.getElementById("personColor").value="#3b82f6"; document.getElementById("colorPreview").style.background="#3b82f6"; document.getElementById("deleteGuardiaModalBtn").style.display="none"; document.getElementById("dateChangeWarning").style.display="none"; } modal.style.display="flex"; }
+  function openModalForDate(d){ actualizarSelectPersonas(); if(soloLectura){ alert("Perfil Visitante: solo consulta"); return; } if(!isSaturday(d)){ alert(`❌ ${d} es ${getDayOfWeekSpanish(d)}. Solo sábados.`); return; } let modal=document.getElementById("guardiaModal"); document.getElementById("modalDate").value=d; currentEditOriginalDate=d; let ex=guards.get(d),exH=horarios.get(d); let eH='',eM='',sH='',sM=''; if(exH){ let [h1,m1]=exH.entrada.split(':'),[h2,m2]=exH.salida.split(':'); eH=h1; eM=m1; sH=h2; sM=m2; } llenarSelectoresHorario(eH,eM,sH,sM); if(ex){ document.getElementById("modalTitle").innerText="✏️ Editar Guardia (puedes cambiar fecha)"; if(personasRegistradas.has(ex.personName)){ document.getElementById("personName").value=ex.personName; document.getElementById("personPosition").value=personasRegistradas.get(ex.personName)||ex.position; } else { document.getElementById("personName").value=ex.personName; document.getElementById("personPosition").value=ex.position||""; } document.getElementById("personColor").value=ex.color; document.getElementById("colorPreview").style.background=ex.color; document.getElementById("deleteGuardiaModalBtn").style.display="inline-block"; document.getElementById("dateChangeWarning").style.display="block"; } else { document.getElementById("modalTitle").innerText="➕ Nueva Guardia (Sábado)"; document.getElementById("personName").value=""; document.getElementById("personPosition").value=""; document.getElementById("personColor").value="#3b82f6"; document.getElementById("colorPreview").style.background="#3b82f6"; document.getElementById("deleteGuardiaModalBtn").style.display="none"; document.getElementById("dateChangeWarning").style.display="none"; } modal.style.display="flex"; }
   function closeModal(){ document.getElementById("guardiaModal").style.display="none"; }
-  function saveFromModal(){ let newDate=document.getElementById("modalDate").value, name=document.getElementById("personName").value, position=document.getElementById("personPosition").value.trim(), color=document.getElementById("personColor").value, eH=document.getElementById("horaEntradaH").value, eM=document.getElementById("horaEntradaM").value, sH=document.getElementById("horaSalidaH").value, sM=document.getElementById("horaSalidaM").value; if(!name||name===""){ alert("Seleccione persona"); return; } let esEdicion=guards.has(currentEditOriginalDate),entrada=null,salida=null; if(esEdicion){ if(!eH||!eM||!sH||!sM){ alert("Horario obligatorio en edición"); return; } entrada=`${eH}:${eM}`; salida=`${sH}:${sM}`; let eTot=parseInt(eH)*60+parseInt(eM), sTot=parseInt(sH)*60+parseInt(sM); if(sTot<=eTot){ alert("Salida debe ser posterior"); return; } } else { if(eH&&eM&&sH&&sM){ entrada=`${eH}:${eM}`; salida=`${sH}:${sM}`; let eTot=parseInt(eH)*60+parseInt(eM), sTot=parseInt(sH)*60+parseInt(sM); if(sTot<=eTot){ alert("Salida posterior requerida"); return; } } } saveGuardiaWithOptionalMove(currentEditOriginalDate,newDate,name,position,color,entrada,salida); closeModal(); }
+  function saveFromModal(){ let newDate=document.getElementById("modalDate").value, name=document.getElementById("personName").value, position=document.getElementById("personPosition").value.trim(), color=document.getElementById("personColor").value, eH=document.getElementById("horaEntradaH").value, eM=document.getElementById("horaEntradaM").value, sH=document.getElementById("horaSalidaH").value, sM=document.getElementById("horaSalidaM").value; if(!name||name===""){ alert("Seleccione persona"); return; } if(!isSaturday(newDate)){ alert(`❌ ${newDate} NO es sábado (es ${getDayOfWeekSpanish(newDate)}).`); return; } let esEdicion=guards.has(currentEditOriginalDate),entrada=null,salida=null; if(eH&&eM&&sH&&sM){ entrada=`${eH}:${eM}`; salida=`${sH}:${sM}`; let eTot=parseInt(eH)*60+parseInt(eM), sTot=parseInt(sH)*60+parseInt(sM); if(sTot<=eTot){ alert("Salida debe ser posterior a la entrada"); return; } } saveGuardiaWithOptionalMove(currentEditOriginalDate,newDate,name,position,color,entrada,salida); closeModal(); }
   function deleteFromModal(){ if(confirm("¿Eliminar guardia?")){ removeGuardia(currentEditOriginalDate); closeModal(); } }
   function updateNav(){ 
     document.getElementById("yearSelect").value = currentYear; 
@@ -1245,13 +1292,11 @@
         let newView = btn.dataset.view;
         
         if(newView === "day" && currentView === "month") {
-          // Si viene del mes, mantener la fecha actual seleccionada o la primera del mes
           if(!currentSelectedDate || currentSelectedDate === "") {
             let fecha = new Date(currentYear, currentMonth, 1);
             currentSelectedDate = `${fecha.getFullYear()}-${String(fecha.getMonth()+1).padStart(2,'0')}-${String(fecha.getDate()).padStart(2,'0')}`;
           }
         } else if(newView === "day") {
-          // Si ya está en día, mantener la misma fecha
           if(!currentSelectedDate) {
             let fecha = new Date(currentYear, currentMonth, 1);
             currentSelectedDate = `${fecha.getFullYear()}-${String(fecha.getMonth()+1).padStart(2,'0')}-${String(fecha.getDate()).padStart(2,'0')}`;
