@@ -18,7 +18,6 @@
       min-height: 100vh;
     }
 
-    /* App container premium con borde azul suave */
     .app {
       max-width: 1440px;
       margin: 0 auto;
@@ -30,7 +29,6 @@
       border: 1px solid rgba(30, 80, 120, 0.12);
     }
 
-    /* Header azul corporativo - responsive */
     .header {
       padding: 0.875rem 1rem;
       background: #ffffff;
@@ -69,7 +67,6 @@
       letter-spacing: 0.3px;
     }
 
-    /* Profile badge azul suave - responsive */
     .profile-badge {
       display: flex;
       align-items: center;
@@ -101,7 +98,6 @@
       border-color: #1a5d8c;
     }
 
-    /* Barra de controles azul/blanca - responsive */
     .controls {
       display: flex;
       gap: 0.75rem;
@@ -179,7 +175,6 @@
       transform: translateY(-1px);
     }
 
-    /* Calendario con bordes azules suaves - responsive */
     .calendar-container {
       padding: 1rem;
       background: #ffffff;
@@ -289,7 +284,6 @@
       color: #0a5e3e;
     }
 
-    /* Year view cards con borde azul - responsive */
     .year-view-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -313,7 +307,6 @@
       font-size: 0.75rem;
     }
 
-    /* Modales elegantes - responsive */
     .modal {
       display: none;
       position: fixed;
@@ -325,9 +318,24 @@
       backdrop-filter: blur(6px);
       align-items: center;
       justify-content: center;
-      z-index: 15000;
       padding: 1rem;
     }
+    #personasModal {
+      z-index: 16000 !important;
+    }
+    #apunteModal {
+      z-index: 15000;
+    }
+    #guardiaModal {
+      z-index: 15000;
+    }
+    #historyModal {
+      z-index: 15000;
+    }
+    #clearDataModal {
+      z-index: 17000 !important;
+    }
+
     .modal-content {
       background: white;
       max-width: 560px;
@@ -409,8 +417,147 @@
       background: #fee9e8;
       color: #bc1c2e;
     }
+    .btn-danger:hover {
+      background: #fcd5d0;
+      transform: translateY(-1px);
+    }
+    .btn-warning {
+      background: #fff3e0;
+      color: #c26b1a;
+    }
+    .btn-warning:hover {
+      background: #ffe8cc;
+      transform: translateY(-1px);
+    }
 
-    /* Footer azul claro - responsive */
+    .dropdown-checkbox-container {
+      position: relative;
+      width: 100%;
+      margin: 6px 0;
+    }
+    .dropdown-checkbox-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px 14px;
+      background: white;
+      border: 1px solid #cde1f0;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: 0.2s;
+      font-size: 0.85rem;
+      color: #1a5d8c;
+      min-height: 48px;
+      gap: 8px;
+    }
+    .dropdown-checkbox-header:hover {
+      border-color: #1a5d8c;
+      box-shadow: 0 0 0 3px rgba(26,93,140,0.1);
+    }
+    .dropdown-checkbox-header .arrow {
+      transition: transform 0.3s ease;
+      font-size: 0.7rem;
+      flex-shrink: 0;
+    }
+    .dropdown-checkbox-header .arrow.open {
+      transform: rotate(180deg);
+    }
+    .dropdown-checkbox-header .selected-count {
+      background: #1a5d8c;
+      color: white;
+      border-radius: 20px;
+      padding: 0 10px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      flex-shrink: 0;
+      min-width: 24px;
+      text-align: center;
+    }
+    .dropdown-checkbox-header .selected-names {
+      flex: 1;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      font-weight: 500;
+      font-size: 0.8rem;
+      color: #0a3a5c;
+    }
+    .dropdown-checkbox-body {
+      display: none;
+      position: absolute;
+      top: calc(100% + 4px);
+      left: 0;
+      right: 0;
+      background: white;
+      border: 1px solid #cde1f0;
+      border-radius: 1rem;
+      padding: 8px;
+      max-height: 200px;
+      overflow-y: auto;
+      z-index: 100;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    }
+    .dropdown-checkbox-body.open {
+      display: block;
+    }
+    .dropdown-checkbox-body .checkbox-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 10px;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+    .dropdown-checkbox-body .checkbox-item:hover {
+      background: #eef3fc;
+    }
+    .dropdown-checkbox-body .checkbox-item input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      flex-shrink: 0;
+      accent-color: #1a5d8c;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .dropdown-checkbox-body .checkbox-item label {
+      flex: 1;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: #1a3a5c;
+      padding: 4px 0;
+    }
+    .dropdown-checkbox-body .checkbox-item .puesto-label {
+      font-size: 0.65rem;
+      color: #6f8aaa;
+      margin-left: 4px;
+    }
+    .dropdown-checkbox-body .no-options {
+      padding: 16px;
+      text-align: center;
+      color: #6f8aaa;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 480px) {
+      .dropdown-checkbox-header {
+        font-size: 0.75rem;
+        padding: 8px 12px;
+        min-height: 42px;
+      }
+      .dropdown-checkbox-header .selected-names {
+        font-size: 0.7rem;
+      }
+      .dropdown-checkbox-body .checkbox-item {
+        padding: 6px 8px;
+      }
+      .dropdown-checkbox-body .checkbox-item label {
+        font-size: 0.78rem;
+      }
+    }
+
     footer {
       display: flex;
       flex-direction: column;
@@ -437,11 +584,29 @@
       color: #1a5d8c;
       cursor: pointer;
       border: 1px solid #cde1f0;
+      transition: 0.2s;
+    }
+    .action-btn:hover {
+      background: #e2edf8;
+      transform: translateY(-1px);
     }
     .action-btn.whatsapp { background: #e1f5e8; color: #0c6b4b; border-color: #b8e0ce; }
+    .action-btn.whatsapp:hover { background: #c8eeda; }
     .action-btn.email { background: #fef2f2; color: #bc544b; border-color: #f5dbdb; }
+    .action-btn.email:hover { background: #fce6e4; }
+    .action-btn.danger { background: #fee9e8; color: #bc1c2e; border-color: #fcd5d0; }
+    .action-btn.danger:hover { background: #fcd5d0; }
+    .action-btn.export { background: #e8f0fe; color: #1a5d8c; border-color: #cde1f0; }
+    .action-btn.export:hover { background: #d4e4fc; }
+    
+    /* Botones ocultos para visitante */
+    .action-btn.visible-control-interno {
+      display: inline-block;
+    }
+    .action-btn.hidden-visitante {
+      display: none;
+    }
 
-    /* Historial y gestión - responsive */
     .history-list {
       background: #fafdff;
       border-radius: 1rem;
@@ -500,9 +665,12 @@
       border-radius: 2rem;
       font-size: 0.7rem;
       align-self: flex-start;
+      cursor: pointer;
+    }
+    .btn-eliminar-persona:hover {
+      background: #fcd5d0;
     }
 
-    /* Login card corporate - responsive */
     .login-modal {
       position: fixed;
       top: 0;
@@ -535,12 +703,10 @@
       font-size: 1.2rem;
     }
 
-    /* Aseguramos que SweetAlert2 aparezca por encima de todo */
     .swal2-container {
       z-index: 30000 !important;
     }
 
-    /* Timer azul - responsive */
     .session-timer {
       position: fixed;
       bottom: 16px;
@@ -559,7 +725,6 @@
     .session-timer.critical { background: #dc2626; animation: pulse 0.7s infinite; }
     @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.02); } }
     
-    /* Estilo para edición inline en el modal de personas */
     .editando-persona {
       background: #eef3fc;
       border-radius: 0.8rem;
@@ -575,7 +740,57 @@
       border: 1px solid #1a5d8c;
     }
 
-    /* Ajustes adicionales para móvil */
+    .responsables-multi {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 2px;
+    }
+    .responsable-tag {
+      background: rgba(26, 93, 140, 0.15);
+      padding: 1px 8px;
+      border-radius: 12px;
+      font-size: 0.5rem;
+      font-weight: 600;
+      color: #1a5d8c;
+      white-space: nowrap;
+    }
+
+    .clear-data-info {
+      background: #f8fbfe;
+      border-radius: 1rem;
+      padding: 16px;
+      margin: 12px 0;
+    }
+    .clear-data-info .key-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 6px 0;
+      border-bottom: 1px solid #eef3fc;
+      font-size: 0.8rem;
+    }
+    .clear-data-info .key-item:last-child {
+      border-bottom: none;
+    }
+    .clear-data-info .key-name {
+      color: #1a5d8c;
+      font-weight: 600;
+    }
+    .clear-data-info .key-value {
+      color: #2c6288;
+      font-family: monospace;
+      font-size: 0.7rem;
+    }
+    .clear-data-warning {
+      background: #fff3e0;
+      border-left: 4px solid #c26b1a;
+      padding: 12px 16px;
+      border-radius: 8px;
+      margin: 12px 0;
+      font-size: 0.85rem;
+      color: #7a4a0a;
+    }
+
     @media (max-width: 480px) {
       .controls {
         gap: 0.5rem;
@@ -599,6 +814,10 @@
       .guardia-badge {
         font-size: 0.55rem;
         padding: 3px 4px;
+      }
+      .clear-data-info .key-item {
+        font-size: 0.7rem;
+        flex-wrap: wrap;
       }
     }
 
@@ -675,15 +894,19 @@
         <div style="width: 1px; height: 20px; background-color: #cbd5e1;"></div>
         <div style="display: flex; flex-direction: column; line-height: 1.2;">
             <span style="font-size: 0.5rem; color: #0A2540;">Hexus</span>
-            <span style="font-size: 0.4rem; color: #94a3b8; font-weight: 500;">V1.0 | Mayo 2026</span>
+            <span style="font-size: 0.4rem; color: #94a3b8; font-weight: 500;">V1.0 | Junio 2026</span>
         </div>
       </div>
     </div>
     <div class="action-buttons">
-      <button id="btnWhatsApp" class="action-btn whatsapp">📱 WhatsApp</button>
-      <button id="btnEmail" class="action-btn email">✉️ Correo</button>
-      <button id="btnExportJSON" class="action-btn">📤 Exportar JSON</button>
-      <button id="btnImportJSON" class="action-btn">📥 Importar JSON</button>
+      <!-- Botones exclusivos de Control Interno -->
+      <button id="btnWhatsApp" class="action-btn whatsapp visible-control-interno">📱 WhatsApp</button>
+      <button id="btnEmail" class="action-btn email visible-control-interno">✉️ Correo</button>
+      <button id="btnClearData" class="action-btn danger visible-control-interno">🗑️ Borrar datos</button>
+      
+      <!-- Botones visibles para todos -->
+      <button id="btnExportJSON" class="action-btn export">📤 Exportar JSON</button>
+      <button id="btnImportJSON" class="action-btn export">📥 Importar JSON</button>
       <input type="file" id="importFileInput" accept=".json" style="display: none;">
     </div>
   </footer>
@@ -692,25 +915,171 @@
 
 <!-- MODALES -->
 <div id="historyModal" class="modal"><div class="modal-content"><h3>📜 Historial de cambios</h3><div id="historyContent"></div><div class="modal-buttons"><button id="closeHistoryBtn" class="btn-secondary">Cerrar</button><button id="editFromHistoryBtn" class="btn-primary">✏️ Editar guardia</button></div></div></div>
-<div id="guardiaModal" class="modal"><div class="modal-content"><h3 id="modalTitle">📌 Asignar Guardia</h3><div id="dateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px; font-size:0.8rem;">⚠️ Si cambias la fecha, la guardia se MOVERÁ</div><input type="date" id="modalDate" /><div style="display:flex; gap:8px; flex-wrap:wrap;"><select id="personName" style="flex:1; min-width:150px;"></select><button type="button" id="btnGestionarPersonas" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px; white-space:nowrap;">➕ Gestionar</button></div><input type="text" id="personPosition" placeholder="Puesto / Rol" readonly style="background:#f8fbfe;" /><div class="time-select-group"><div style="flex:1"><label>Entrada (opcional)</label><div style="display:flex; gap:8px;"><select id="horaEntradaH"></select><select id="horaEntradaM"></select></div></div><div style="flex:1"><label>Salida (opcional)</label><div style="display:flex; gap:8px;"><select id="horaSalidaH"></select><select id="horaSalidaM"></select></div></div></div><div><label>Color:</label><input type="color" id="personColor" value="#3b82f6" style="width:50px;" /><span id="colorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#3b82f6; vertical-align:middle; margin-left:12px;"></span></div><div class="modal-buttons"><button id="saveGuardiaBtn" class="btn-primary">Guardar</button><button id="cancelModalBtn" class="btn-secondary">Cancelar</button><button id="deleteGuardiaModalBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
+
+<div id="guardiaModal" class="modal">
+  <div class="modal-content">
+    <h3 id="modalTitle">📌 Asignar Guardia</h3>
+    <div id="dateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px; font-size:0.8rem;">⚠️ Si cambias la fecha, la guardia se MOVERÁ</div>
+    <input type="date" id="modalDate" />
+    
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; align-items:flex-start;">
+      <div style="flex:1; min-width:150px;">
+        <label style="font-weight:600; font-size:0.75rem; color:#1a5d8c;">Responsables:</label>
+        <div id="guardiaDropdownContainer" class="dropdown-checkbox-container"></div>
+      </div>
+      <button type="button" id="btnGestionarPersonas" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px; white-space:nowrap; align-self:flex-start; margin-top:22px;">➕ Gestionar</button>
+    </div>
+    <input type="text" id="personPosition" placeholder="Puesto / Rol (opcional)" style="background:#f8fbfe;" />
+    
+    <div class="time-select-group">
+      <div style="flex:1"><label>Entrada (opcional)</label><div style="display:flex; gap:8px;"><select id="horaEntradaH"></select><select id="horaEntradaM"></select></div></div>
+      <div style="flex:1"><label>Salida (opcional)</label><div style="display:flex; gap:8px;"><select id="horaSalidaH"></select><select id="horaSalidaM"></select></div></div>
+    </div>
+    <div><label>Color:</label><input type="color" id="personColor" value="#3b82f6" style="width:50px;" /><span id="colorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#3b82f6; vertical-align:middle; margin-left:12px;"></span></div>
+    <div class="modal-buttons"><button id="saveGuardiaBtn" class="btn-primary">Guardar</button><button id="cancelModalBtn" class="btn-secondary">Cancelar</button><button id="deleteGuardiaModalBtn" class="btn-danger" style="display:none;">Eliminar</button></div>
+  </div>
+</div>
+
 <div id="personasModal" class="modal"><div class="modal-content"><h3>👥 Gestión de personas</h3><input type="text" id="nuevaPersonaNombre" placeholder="Nombre completo" /><input type="text" id="nuevaPersonaPuesto" placeholder="Puesto / Rol" /><button id="btnAgregarPersona" class="btn-primary" style="width:100%;">➕ Agregar persona</button><div id="listaPersonasContainer" class="personas-list" style="margin-top:1rem;"></div><div class="modal-buttons"><button id="closePersonasBtn" class="btn-secondary">Cerrar</button></div></div></div>
-<div id="apunteModal" class="modal"><div class="modal-content"><h3>📝 Nota / Apunte</h3><div id="apunteFecha"></div><input type="text" id="apunteTitulo" placeholder="Título de la nota (obligatorio)" style="margin-top:8px;" /><textarea id="apunteTexto" rows="4" placeholder="Escriba información adicional... (solo se redimensiona verticalmente)"></textarea><div class="modal-buttons"><button id="saveApunteBtn" class="btn-primary">Guardar</button><button id="cancelApunteBtn" class="btn-secondary">Cancelar</button><button id="deleteApunteBtn" class="btn-danger" style="display:none;">Eliminar</button></div></div></div>
+
+<div id="apunteModal" class="modal">
+  <div class="modal-content">
+    <h3>📝 Nota / Apunte</h3>
+    <div id="apunteFechaDisplay" style="margin-bottom:8px;"></div>
+    <div id="apunteDateChangeWarning" style="display:none; background:#fff0e0; padding:8px; border-radius:20px; margin-bottom:10px; font-size:0.8rem;">⚠️ Si cambias la fecha, la nota se MOVERÁ</div>
+    <input type="date" id="apunteFecha" />
+    
+    <div style="display:flex; gap:8px; flex-wrap:wrap; margin-top:6px; align-items:flex-start;">
+      <div style="flex:1; min-width:150px;">
+        <label style="font-weight:600; font-size:0.75rem; color:#1a5d8c;">Responsables:</label>
+        <div id="apunteDropdownContainer" class="dropdown-checkbox-container"></div>
+      </div>
+      <button type="button" id="btnGestionarPersonasApunte" class="btn-gestionar-personas" style="background:#eef3fc; border-radius:40px; padding:0 16px; white-space:nowrap; align-self:flex-start; margin-top:22px;">➕ Gestionar</button>
+    </div>
+    <input type="text" id="apuntePersonPosition" placeholder="Puesto / Rol (opcional)" style="background:#f8fbfe;" />
+    
+    <div class="time-select-group" style="margin-top:4px;">
+      <div style="flex:1">
+        <label style="font-weight:600; font-size:0.75rem; color:#1a5d8c;">Entrada:</label>
+        <div style="display:flex; gap:8px;">
+          <select id="apunteHoraEntradaH"></select>
+          <select id="apunteHoraEntradaM"></select>
+        </div>
+      </div>
+      <div style="flex:1">
+        <label style="font-weight:600; font-size:0.75rem; color:#1a5d8c;">Salida:</label>
+        <div style="display:flex; gap:8px;">
+          <select id="apunteHoraSalidaH"></select>
+          <select id="apunteHoraSalidaM"></select>
+        </div>
+      </div>
+    </div>
+    
+    <div style="margin-top:4px;">
+      <label style="font-weight:600; font-size:0.75rem; color:#1a5d8c;">Color:</label>
+      <input type="color" id="apunteColor" value="#f59e0b" style="width:50px;" />
+      <span id="apunteColorPreview" style="display:inline-block; width:32px; height:32px; border-radius:50%; background:#f59e0b; vertical-align:middle; margin-left:12px;"></span>
+    </div>
+    
+    <input type="text" id="apunteTitulo" placeholder="Título de la nota (obligatorio)" style="margin-top:8px;" />
+    <textarea id="apunteTexto" rows="4" placeholder="Escriba información adicional... (solo se redimensiona verticalmente)"></textarea>
+    
+    <div class="modal-buttons">
+      <button id="saveApunteBtn" class="btn-primary">Guardar</button>
+      <button id="cancelApunteBtn" class="btn-secondary">Cancelar</button>
+      <button id="deleteApunteBtn" class="btn-danger" style="display:none;">Eliminar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL DE BORRADO DE DATOS -->
+<div id="clearDataModal" class="modal">
+  <div class="modal-content">
+    <h3>🗑️ Borrar datos de Hexus</h3>
+    <p style="color:#4a7a9e; font-size:0.9rem;">Esto eliminará <strong>SOLO</strong> los datos de esta aplicación en tu navegador.</p>
+    
+    <div class="clear-data-info">
+      <div style="font-weight:600; font-size:0.8rem; color:#1a5d8c; margin-bottom:8px;">📦 Datos que se eliminarán:</div>
+      <div class="key-item">
+        <span class="key-name">📋 guardiasApp</span>
+        <span class="key-value">Todas las guardias, horarios y apuntes</span>
+      </div>
+      <div class="key-item">
+        <span class="key-name">👥 personasRegistradas</span>
+        <span class="key-value">Lista de personas registradas</span>
+      </div>
+      <div class="key-item">
+        <span class="key-name">👤 perfilActual</span>
+        <span class="key-value">Perfil de usuario guardado</span>
+      </div>
+    </div>
+    
+    <div class="clear-data-warning">
+      ⚠️ <strong>¡Atención!</strong> Esta acción es irreversible. Perderás todas las guardias, notas y personas registradas. 
+      Te recomendamos exportar un respaldo antes de continuar.
+    </div>
+    
+    <div style="display:flex; gap:12px; margin-top:12px; flex-wrap:wrap;">
+      <button id="btnExportBeforeClear" class="btn-secondary" style="flex:1;">📤 Exportar respaldo</button>
+    </div>
+    
+    <div class="modal-buttons" style="margin-top:16px;">
+      <button id="confirmClearData" class="btn-danger">🗑️ Sí, borrar todos los datos</button>
+      <button id="cancelClearData" class="btn-secondary">Cancelar</button>
+    </div>
+  </div>
+</div>
 
 <script>
-  // ==================== LÓGICA ORIGINAL CON MEJORAS ====================
+  // ==================== LÓGICA ====================
   const PASSWORDS = { 'control-interno': 'ControlInterno2026', 'visitante': 'Visitante2026' };
   let perfilActual = null, soloLectura = true;
   const MINUTOS_SESION = 10, TIEMPO_INACTIVIDAD = MINUTOS_SESION * 60 * 1000;
   let tiempoRestante = MINUTOS_SESION * 60, temporizadorInactividad = null, temporizadorReloj = null;
+  
+  // ===== CLAVES DE LOCALSTORAGE QUE USA LA APP =====
+  const APP_KEYS = ['guardiasApp', 'personasRegistradas', 'perfilActual'];
+  
   function actualizarReloj(){ let t=document.getElementById('timerText'); if(t){ let m=Math.floor(tiempoRestante/60),s=tiempoRestante%60; t.textContent=`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`; let div=document.getElementById('sessionTimer'); if(div){ if(tiempoRestante<=10) div.classList.add('critical'); else if(tiempoRestante<=30) div.classList.add('warning'); else div.classList.remove('warning','critical'); } } }
   function iniciarContadorReloj(){ if(temporizadorReloj) clearInterval(temporizadorReloj); tiempoRestante=MINUTOS_SESION*60; actualizarReloj(); temporizadorReloj=setInterval(()=>{ if(tiempoRestante>0 && perfilActual){ tiempoRestante--; actualizarReloj(); } },1000); }
   function reiniciarTemporizadorSesion(){ if(temporizadorInactividad) clearTimeout(temporizadorInactividad); if(perfilActual){ temporizadorInactividad=setTimeout(()=>cerrarSesionPorInactividad(),TIEMPO_INACTIVIDAD); reiniciarContadorReloj(); } }
   function reiniciarContadorReloj(){ tiempoRestante=MINUTOS_SESION*60; actualizarReloj(); }
   async function cerrarSesionPorInactividad(){ if(perfilActual){ if(temporizadorReloj) clearInterval(temporizadorReloj); await Swal.fire({title:'⏰ Sesión expirada',text:`${MINUTOS_SESION} minuto${MINUTOS_SESION>1?'s':''} sin actividad`,icon:'info',timer:2000,showConfirmButton:false}); cerrarSesion(); } }
   function activarDetectorInactividad(){ ['click','mousemove','keypress','scroll','touchstart'].forEach(e=>document.addEventListener(e,reiniciarTemporizadorSesion)); }
-  function verificarSesionAlCargar(){ let sv=sessionStorage.getItem('sesionActiva'), pg=localStorage.getItem('perfilActual'); if(sv==='true' && pg && PASSWORDS[pg]){ perfilActual=pg; soloLectura=(pg==='visitante'); document.getElementById('perfilNombre').innerText=pg==='control-interno'?'Control Interno':'Visitante'; document.getElementById('profileBadge').style.display='flex'; document.getElementById('controlsBar').style.opacity='1'; document.getElementById('controlsBar').style.pointerEvents='auto'; document.getElementById('loginOverlay').style.display='none'; iniciarTemporizadorSesion(); activarDetectorInactividad(); mostrarRelojSesion(true); loadFromLocal(); cargarPersonas(); renderCurrentView(); return true; } return false; }
+  function verificarSesionAlCargar(){ 
+    let sv=sessionStorage.getItem('sesionActiva'), pg=localStorage.getItem('perfilActual'); 
+    if(sv==='true' && pg && PASSWORDS[pg]){ 
+      perfilActual=pg; 
+      soloLectura=(pg==='visitante'); 
+      document.getElementById('perfilNombre').innerText=pg==='control-interno'?'Control Interno':'Visitante'; 
+      document.getElementById('profileBadge').style.display='flex'; 
+      document.getElementById('controlsBar').style.opacity='1'; 
+      document.getElementById('controlsBar').style.pointerEvents='auto'; 
+      document.getElementById('loginOverlay').style.display='none'; 
+      iniciarTemporizadorSesion(); 
+      activarDetectorInactividad(); 
+      mostrarRelojSesion(true); 
+      loadFromLocal(); 
+      cargarPersonas(); 
+      renderCurrentView();
+      // Mostrar/ocultar botones según perfil
+      actualizarVisibilidadBotones();
+      return true; 
+    } 
+    return false; 
+  }
   function iniciarTemporizadorSesion(){ iniciarContadorReloj(); reiniciarTemporizadorSesion(); }
   function mostrarRelojSesion(m){ let t=document.getElementById('sessionTimer'); if(t) t.style.display=m?'flex':'none'; }
+  
+  // ===== FUNCIÓN PARA ACTUALIZAR VISIBILIDAD DE BOTONES SEGÚN PERFIL =====
+  function actualizarVisibilidadBotones() {
+    const esControlInterno = (perfilActual === 'control-interno');
+    document.querySelectorAll('.visible-control-interno').forEach(el => {
+      el.style.display = esControlInterno ? 'inline-block' : 'none';
+    });
+    // Los botones .export siempre están visibles
+  }
+  
   async function cerrarSesion(){ 
     if(perfilActual){ 
       if(temporizadorReloj) clearInterval(temporizadorReloj); 
@@ -726,20 +1095,128 @@
       document.getElementById('loginOverlay').style.display='flex'; 
       document.getElementById('authPassword').value=''; 
       document.getElementById('profileSelect').value=''; 
+      // Ocultar botones de control interno
+      actualizarVisibilidadBotones();
       await Swal.fire({title:'👋 Sesión cerrada',text:'Has cerrado sesión correctamente',icon:'info',timer:2000,showConfirmButton:false}); 
     } 
   }
   window.addEventListener('beforeunload',()=>{ if(perfilActual) sessionStorage.setItem('sesionActiva','true'); });
   
-  // ==================== FUNCIONES CORREGIDAS ====================
-  // Función isSaturday CORREGIDA - usa UTC para evitar problemas de zona horaria
+  // ===== FUNCIÓN PARA BORRAR SOLO DATOS DE LA APP =====
+  function borrarDatosApp() {
+    let datosEliminados = [];
+    APP_KEYS.forEach(key => {
+      if (localStorage.getItem(key) !== null) {
+        localStorage.removeItem(key);
+        datosEliminados.push(key);
+      }
+    });
+    return datosEliminados;
+  }
+  
+  // ===== FUNCIÓN PARA MOSTRAR TAMAÑO DE DATOS =====
+  function getAppDataSize() {
+    let total = 0;
+    APP_KEYS.forEach(key => {
+      const value = localStorage.getItem(key);
+      if (value) {
+        total += value.length;
+      }
+    });
+    return total;
+  }
+  
+  function formatSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+  }
+  
+  // ===== FUNCIÓN PARA ABRIR MODAL DE BORRADO =====
+  function abrirModalBorrar() {
+    if (soloLectura) {
+      Swal.fire('Acceso restringido', 'Solo Control Interno puede borrar datos', 'warning');
+      return;
+    }
+    const modal = document.getElementById('clearDataModal');
+    const size = getAppDataSize();
+    
+    const infoDiv = modal.querySelector('.clear-data-info');
+    let sizeHtml = '';
+    APP_KEYS.forEach(key => {
+      const value = localStorage.getItem(key);
+      const exists = value !== null;
+      const size = exists ? formatSize(value.length) : '0 B';
+      sizeHtml += `<div class="key-item">
+        <span class="key-name">${key}</span>
+        <span class="key-value">${exists ? '✅ ' + size : '❌ Vacío'}</span>
+      </div>`;
+    });
+    
+    const itemsContainer = infoDiv.querySelector('.key-item');
+    if (itemsContainer) {
+      const parent = itemsContainer.parentElement;
+      const title = parent.querySelector('div:first-child');
+      parent.innerHTML = '';
+      parent.appendChild(title);
+      const tempDiv = document.createElement('div');
+      tempDiv.innerHTML = sizeHtml;
+      while (tempDiv.firstChild) {
+        parent.appendChild(tempDiv.firstChild);
+      }
+    }
+    
+    const warningDiv = modal.querySelector('.clear-data-warning');
+    if (warningDiv) {
+      const totalSize = formatSize(size);
+      warningDiv.innerHTML = `⚠️ <strong>¡Atención!</strong> Estás a punto de eliminar <strong>${totalSize}</strong> de datos de esta aplicación. Esta acción es irreversible. Te recomendamos exportar un respaldo antes de continuar.`;
+    }
+    
+    modal.style.display = 'flex';
+  }
+  
+  // ===== FUNCIÓN PARA CONFIRMAR BORRADO =====
+  async function confirmarBorrarDatos() {
+    const result = await Swal.fire({
+      title: '⚠️ ¿Estás seguro?',
+      text: 'Esta acción eliminará TODOS los datos de Hexus (guardias, notas y personas). ¡No podrás recuperarlos!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626',
+      cancelButtonColor: '#6f8aaa',
+      confirmButtonText: '🗑️ Sí, borrar todo',
+      cancelButtonText: 'Cancelar'
+    });
+    
+    if (result.isConfirmed) {
+      const eliminados = borrarDatosApp();
+      
+      guards = new Map();
+      horarios = new Map();
+      apuntes = new Map();
+      personasRegistradas = new Map();
+      
+      renderCurrentView();
+      actualizarListaPersonasModal();
+      
+      document.getElementById('clearDataModal').style.display = 'none';
+      
+      await Swal.fire({
+        title: '✅ Datos borrados',
+        text: `Se eliminaron ${eliminados.length} elementos del localStorage. La aplicación está en blanco.`,
+        icon: 'success',
+        confirmButtonColor: '#1a5d8c'
+      });
+    }
+  }
+  
+  // ==================== FUNCIONES ====================
   function isSaturday(d) {
     let partes = d.split('-');
     let fecha = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
     return fecha.getUTCDay() === 6;
   }
   
-  // Función getDayOfWeekSpanish CORREGIDA - usa UTC
   function getDayOfWeekSpanish(d) {
     let partes = d.split('-');
     let fecha = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
@@ -747,25 +1224,269 @@
     return dias[fecha.getUTCDay()];
   }
   
-  // Función generarMensajeGuardias CORREGIDA - muestra correctamente los sábados
-  function generarMensajeGuardias(nom, lista) {
+  // ===== FUNCIONES PARA DESPLEGABLE CON CHECKBOXES =====
+  function crearDropdownCheckbox(containerId, selectedValues, onChangeCallback) {
+    const container = document.getElementById(containerId);
+    if (!container) return null;
+    
+    let isOpen = false;
+    let selected = selectedValues || [];
+    
+    function updateHeader() {
+      const header = container.querySelector('.dropdown-checkbox-header');
+      if (!header) return;
+      
+      const countSpan = header.querySelector('.selected-count');
+      const namesSpan = header.querySelector('.selected-names');
+      
+      const count = selected.length;
+      if (countSpan) countSpan.textContent = count;
+      
+      if (namesSpan) {
+        if (count === 0) {
+          namesSpan.textContent = 'Seleccionar responsables...';
+          namesSpan.style.color = '#6f8aaa';
+        } else if (count <= 2) {
+          const nombres = selected.join(', ');
+          namesSpan.textContent = nombres;
+          namesSpan.style.color = '#0a3a5c';
+        } else {
+          namesSpan.textContent = `${selected.slice(0,2).join(', ')} +${count-2} más`;
+          namesSpan.style.color = '#0a3a5c';
+        }
+      }
+    }
+    
+    function render() {
+      const personas = Array.from(personasRegistradas.keys());
+      
+      let html = `
+        <div class="dropdown-checkbox-header" id="${containerId}-header">
+          <span class="selected-names">Seleccionar responsables...</span>
+          <span class="selected-count">0</span>
+          <span class="arrow">▼</span>
+        </div>
+        <div class="dropdown-checkbox-body" id="${containerId}-body">
+      `;
+      
+      if (personas.length === 0) {
+        html += `<div class="no-options">No hay personas registradas</div>`;
+      } else {
+        personas.forEach(nom => {
+          const checked = selected.includes(nom) ? 'checked' : '';
+          const puesto = personasRegistradas.get(nom) || '';
+          html += `
+            <div class="checkbox-item" data-nombre="${nom.replace(/"/g, '&quot;')}">
+              <input type="checkbox" value="${nom.replace(/"/g, '&quot;')}" ${checked} id="${containerId}-cb-${nom.replace(/[^a-zA-Z0-9]/g, '_')}">
+              <label for="${containerId}-cb-${nom.replace(/[^a-zA-Z0-9]/g, '_')}">
+                ${escapeHtml(nom)}
+                ${puesto ? `<span class="puesto-label">(${escapeHtml(puesto)})</span>` : ''}
+              </label>
+            </div>
+          `;
+        });
+      }
+      
+      html += `</div>`;
+      container.innerHTML = html;
+      
+      const header = container.querySelector('.dropdown-checkbox-header');
+      const body = container.querySelector('.dropdown-checkbox-body');
+      
+      header.addEventListener('click', function(e) {
+        e.stopPropagation();
+        isOpen = !isOpen;
+        body.classList.toggle('open', isOpen);
+        header.querySelector('.arrow').classList.toggle('open', isOpen);
+      });
+      
+      container.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => {
+        cb.addEventListener('change', function(e) {
+          e.stopPropagation();
+          const nombre = this.value;
+          if (this.checked) {
+            if (!selected.includes(nombre)) selected.push(nombre);
+          } else {
+            selected = selected.filter(n => n !== nombre);
+          }
+          updateHeader();
+          if (onChangeCallback) onChangeCallback(selected);
+        });
+        
+        const item = cb.closest('.checkbox-item');
+        if (item) {
+          item.addEventListener('click', function(e) {
+            if (e.target.tagName !== 'INPUT' && e.target.tagName !== 'LABEL') {
+              const checkbox = this.querySelector('input[type="checkbox"]');
+              if (checkbox) {
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event('change'));
+              }
+            }
+          });
+        }
+      });
+      
+      document.addEventListener('click', function(e) {
+        if (!container.contains(e.target)) {
+          if (isOpen) {
+            isOpen = false;
+            body.classList.remove('open');
+            const arrow = header.querySelector('.arrow');
+            if (arrow) arrow.classList.remove('open');
+          }
+        }
+      });
+      
+      updateHeader();
+    }
+    
+    function getSelected() {
+      return [...selected];
+    }
+    
+    function setSelected(values) {
+      selected = values || [];
+      container.querySelectorAll('.checkbox-item input[type="checkbox"]').forEach(cb => {
+        cb.checked = selected.includes(cb.value);
+      });
+      updateHeader();
+      if (onChangeCallback) onChangeCallback(selected);
+    }
+    
+    render();
+    
+    return {
+      getSelected: getSelected,
+      setSelected: setSelected,
+      refresh: render
+    };
+  }
+  
+  let guardiaDropdown = null;
+  let apunteDropdown = null;
+  
+  // ===== FUNCIONES DE NEGOCIO =====
+  
+  function generarMensajeParaPersona(nom) {
     let msg = `📋 *GUARDIAS DE ${nom.toUpperCase()}*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
     
-    if (lista.length === 0) {
+    let guardiasPersona = [];
+    for (let [fecha, g] of guards.entries()) {
+      let nombres = g.personNames || [g.personName];
+      if (nombres.includes(nom)) {
+        let h = horarios.get(fecha);
+        guardiasPersona.push({
+          fecha: fecha,
+          puesto: g.position,
+          horario: h ? `${h.entrada} - ${h.salida}` : 'Sin horario'
+        });
+      }
+    }
+    
+    if (guardiasPersona.length === 0) {
       msg += `❌ Sin guardias asignadas\n\n`;
     } else {
-      lista.forEach(g => {
-        // Usar UTC para formatear la fecha correctamente
+      guardiasPersona.sort((a,b) => a.fecha.localeCompare(b.fecha));
+      guardiasPersona.forEach(g => {
         let partes = g.fecha.split('-');
         let fechaObj = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
         let fd = fechaObj.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
         let diaSemana = getDayOfWeekSpanish(g.fecha);
-        // Mostrar siempre el día real de la semana (debe ser sábado si los datos son correctos)
         msg += `📌 ${fd} (${diaSemana})\n   👤 ${g.puesto}\n   🕒 ${g.horario}\n\n`;
       });
     }
     
-    msg += `━━━━━━━━━━━━━━━━━━━━\n📝 *NOTAS PENDIENTES (POR MES)*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    msg += `━━━━━━━━━━━━━━━━━━━━\n📝 *NOTAS DONDE ${nom.toUpperCase()} ES RESPONSABLE*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    let notasPersona = [];
+    for (let [fecha, nota] of apuntes.entries()) {
+      let responsables = nota.responsables || [];
+      if (responsables.includes(nom)) {
+        notasPersona.push({ fecha: fecha, nota: nota });
+      }
+    }
+    
+    if (notasPersona.length === 0) {
+      msg += `✅ Sin notas donde sea responsable\n\n`;
+    } else {
+      notasPersona.sort((a,b) => a.fecha.localeCompare(b.fecha));
+      let porMes = {};
+      notasPersona.forEach(({fecha, nota}) => {
+        let partes = fecha.split('-');
+        let d = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
+        let m = d.toLocaleDateString('es-ES', { month: 'long', year: 'numeric', timeZone: 'UTC' });
+        if (!porMes[m]) porMes[m] = [];
+        let tituloMostrar = nota.titulo && nota.titulo.trim() ? nota.titulo : "(Sin título)";
+        let responsables = nota.responsables || ["Sin responsable"];
+        let puesto = nota.puesto || "Sin puesto";
+        let horario = nota.horario || "Sin horario";
+        porMes[m].push({
+          dia: d.getUTCDate(),
+          ds: getDayOfWeekSpanish(fecha),
+          tit: tituloMostrar,
+          txt: nota.texto || '',
+          responsables: responsables,
+          puesto: puesto,
+          horario: horario
+        });
+      });
+      for (let [m, notas] of Object.entries(porMes)) {
+        msg += `📆 *${m.toUpperCase()}*\n────────────────\n`;
+        notas.forEach(n => {
+          msg += `   📌 Día ${n.dia} (${n.ds}): ${n.tit}\n`;
+          msg += `      👤 ${n.responsables.join(", ")} · ${n.puesto}\n`;
+          msg += `      🕒 ${n.horario}\n`;
+          if (n.txt) {
+            let t = n.txt.length > 60 ? n.txt.substring(0, 60) + '...' : n.txt;
+            msg += `      📝 ${t}\n`;
+          }
+          msg += `\n`;
+        });
+      }
+    }
+    
+    msg += `━━━━━━━━━━━━━━━━━━━━\n📱 Hexus · Gestión de Guardias\n⏰ ${new Date().toLocaleString('es-ES')}`;
+    return msg;
+  }
+  
+  function generarMensajeTodos() {
+    let msg = `📋 *REPORTE COMPLETO DE GUARDIAS*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
+    
+    let personasMap = new Map();
+    for (let [fecha, g] of guards.entries()) {
+      let nombres = g.personNames || [g.personName];
+      let h = horarios.get(fecha);
+      nombres.forEach(nom => {
+        if (!personasMap.has(nom)) personasMap.set(nom, []);
+        personasMap.get(nom).push({
+          fecha: fecha,
+          puesto: g.position,
+          horario: h ? `${h.entrada} - ${h.salida}` : 'Sin horario'
+        });
+      });
+    }
+    
+    let personas = Array.from(personasMap.entries()).sort((a,b) => a[0].localeCompare(b[0]));
+    
+    if (personas.length === 0) {
+      msg += `❌ Sin guardias asignadas\n\n`;
+    } else {
+      personas.forEach(([nom, lista]) => {
+        msg += `👤 *${nom.toUpperCase()}*\n`;
+        lista.sort((a,b) => a.fecha.localeCompare(b.fecha));
+        lista.forEach(g => {
+          let partes = g.fecha.split('-');
+          let fechaObj = new Date(Date.UTC(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2])));
+          let fd = fechaObj.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+          let diaSemana = getDayOfWeekSpanish(g.fecha);
+          msg += `   📌 ${fd} (${diaSemana})\n      👤 ${g.puesto}\n      🕒 ${g.horario}\n\n`;
+        });
+        msg += `────────────────\n\n`;
+      });
+    }
+    
+    msg += `━━━━━━━━━━━━━━━━━━━━\n📝 *TODAS LAS NOTAS REGISTRADAS*\n━━━━━━━━━━━━━━━━━━━━\n\n`;
     
     let fechas = Array.from(apuntes.keys()).filter(f => apuntes.get(f)).sort((a, b) => {
       let pa = a.split('-'), pb = b.split('-');
@@ -783,17 +1504,25 @@
         if (!porMes[m]) porMes[m] = [];
         let nota = apuntes.get(f);
         let tituloMostrar = nota.titulo && nota.titulo.trim() ? nota.titulo : "(Sin título)";
+        let responsables = nota.responsables || ["Sin responsable"];
+        let puesto = nota.puesto || "Sin puesto";
+        let horario = nota.horario || "Sin horario";
         porMes[m].push({
           dia: d.getUTCDate(),
           ds: getDayOfWeekSpanish(f),
           tit: tituloMostrar,
-          txt: nota.texto || ''
+          txt: nota.texto || '',
+          responsables: responsables,
+          puesto: puesto,
+          horario: horario
         });
       });
       for (let [m, notas] of Object.entries(porMes)) {
         msg += `📆 *${m.toUpperCase()}*\n────────────────\n`;
         notas.forEach(n => {
           msg += `   📌 Día ${n.dia} (${n.ds}): ${n.tit}\n`;
+          msg += `      👤 ${n.responsables.join(", ")} · ${n.puesto}\n`;
+          msg += `      🕒 ${n.horario}\n`;
           if (n.txt) {
             let t = n.txt.length > 60 ? n.txt.substring(0, 60) + '...' : n.txt;
             msg += `      📝 ${t}\n`;
@@ -809,19 +1538,182 @@
   
   let guards=new Map(), horarios=new Map(), apuntes=new Map();
   let currentView="month", currentYear=new Date().getFullYear(), currentMonth=new Date().getMonth(), currentSelectedDate=new Date().toISOString().slice(0,10), personasRegistradas=new Map();
+  let currentApunteOriginalDate = null;
+  
   function getColorForPerson(n){ let pal=["#3b82f6","#f97316","#10b981","#8b5cf6","#ec489a","#06b6d4","#ef4444","#84cc16","#f59e0b","#6366f1"],h=0; for(let i=0;i<n.length;i++) h=((h<<5)-h)+n.charCodeAt(i); return pal[Math.abs(h)%pal.length]; }
-  function llenarSelectoresHorario(eH,eM,sH,sM){ let hS=document.getElementById("horaEntradaH"),mS=document.getElementById("horaEntradaM"),hSS=document.getElementById("horaSalidaH"),mSS=document.getElementById("horaSalidaM"); if(hS){ hS.innerHTML='<option value="">Hora</option>'; for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eH===String(i).padStart(2,'0')) o.selected=true; hS.appendChild(o); } } if(mS){ mS.innerHTML='<option value="">Min</option>'; for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eM===String(i).padStart(2,'0')) o.selected=true; mS.appendChild(o); } } if(hSS){ hSS.innerHTML=''; for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sH===String(i).padStart(2,'0')) o.selected=true; hSS.appendChild(o); } } if(mSS){ mSS.innerHTML=''; for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sM===String(i).padStart(2,'0')) o.selected=true; mSS.appendChild(o); } } }
+  
+  function llenarSelectoresHorario(eH,eM,sH,sM){ 
+    let hS=document.getElementById("horaEntradaH"),mS=document.getElementById("horaEntradaM"),hSS=document.getElementById("horaSalidaH"),mSS=document.getElementById("horaSalidaM"); 
+    if(hS){ 
+      hS.innerHTML='<option value="">Hora</option>'; 
+      for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eH===String(i).padStart(2,'0')) o.selected=true; hS.appendChild(o); } 
+    } 
+    if(mS){ 
+      mS.innerHTML='<option value="">Minuto</option>'; 
+      for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eM===String(i).padStart(2,'0')) o.selected=true; mS.appendChild(o); } 
+    } 
+    if(hSS){ 
+      hSS.innerHTML='<option value="">Hora</option>'; 
+      for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sH===String(i).padStart(2,'0')) o.selected=true; hSS.appendChild(o); } 
+    } 
+    if(mSS){ 
+      mSS.innerHTML='<option value="">Minuto</option>'; 
+      for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sM===String(i).padStart(2,'0')) o.selected=true; mSS.appendChild(o); } 
+    } 
+  }
+  
+  function llenarSelectoresApunte(eH,eM,sH,sM){ 
+    let hS=document.getElementById("apunteHoraEntradaH"),mS=document.getElementById("apunteHoraEntradaM"),hSS=document.getElementById("apunteHoraSalidaH"),mSS=document.getElementById("apunteHoraSalidaM"); 
+    if(hS){ 
+      hS.innerHTML='<option value="">Hora</option>'; 
+      for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eH===String(i).padStart(2,'0')) o.selected=true; hS.appendChild(o); } 
+    } 
+    if(mS){ 
+      mS.innerHTML='<option value="">Minuto</option>'; 
+      for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(eM===String(i).padStart(2,'0')) o.selected=true; mS.appendChild(o); } 
+    } 
+    if(hSS){ 
+      hSS.innerHTML='<option value="">Hora</option>'; 
+      for(let i=0;i<=23;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sH===String(i).padStart(2,'0')) o.selected=true; hSS.appendChild(o); } 
+    } 
+    if(mSS){ 
+      mSS.innerHTML='<option value="">Minuto</option>'; 
+      for(let i=0;i<=59;i++){ let o=document.createElement('option'); o.value=String(i).padStart(2,'0'); o.textContent=String(i).padStart(2,'0'); if(sM===String(i).padStart(2,'0')) o.selected=true; mSS.appendChild(o); } 
+    } 
+  }
+  
   function validarHorario(eH,eM,sH,sM){ if(!eH||!eM||!sH||!sM) return true; let e=parseInt(eH)*60+parseInt(eM), s=parseInt(sH)*60+parseInt(sM); return s>e; }
-  function saveGuardiaWithOptionalMove(orig,newD,name,pos,col,ent,sal){ if(!name||name.trim()===""){ alert("Nombre obligatorio"); return false; } if(!isSaturday(newD)){ alert(`❌ ${newD} es ${getDayOfWeekSpanish(newD)}. Solo sábados.`); return false; } if(ent&&sal){ let [eh,em]=ent.split(':'),[sh,sm]=sal.split(':'); if(!validarHorario(eh,em,sh,sm)){ alert("Salida debe ser posterior"); return false; } } let cName=name.trim(),cPos=pos?pos.trim():"Sin especificar",fCol=col||getColorForPerson(cName),existNew=guards.get(newD),moving=(orig&&orig!==newD); if(ent&&sal) horarios.set(newD,{entrada:ent,salida:sal}); else if(horarios.has(newD) && !ent && !sal) horarios.delete(newD); if(moving){ let origG=guards.get(orig); if(!origG) return createNewGuardia(newD,cName,cPos,fCol,ent,sal); if(existNew&&orig!==newD){ if(!confirm(`⚠️ Ya existe guardia de ${existNew.personName} el ${newD}. ¿Reemplazar?`)) return false; } let newHist=[...(origG.history||[])]; newHist.push({type:"movimiento",previousDate:orig,previousPerson:origG.personName,previousPosition:origG.position,newDate:newD,newPerson:cName,changedAt:new Date().toISOString(),description:`Movimiento ${orig} → ${newD}`}); if(origG.personName!==cName||origG.position!==cPos||origG.color!==fCol) newHist.push({type:"edición",previousDate:newD,previousPerson:origG.personName,changedAt:new Date().toISOString(),newPerson:cName,description:`Edición: ${origG.personName} → ${cName}`}); guards.set(newD,{personName:cName,position:cPos,color:fCol,history:newHist}); guards.delete(orig); renderCurrentView(); alert(`✅ MOVIDA de ${orig} a ${newD}`); return true; } else if(orig&&orig===newD){ let ex=guards.get(newD); let hist=ex?[...(ex.history||[])]:[]; if(ex&&(ex.personName!==cName||ex.position!==cPos||ex.color!==fCol)) hist.push({type:"edición",previousDate:newD,previousPerson:ex.personName,changedAt:new Date().toISOString(),newPerson:cName,description:`Edición: ${ex.personName} → ${cName}`}); guards.set(newD,{personName:cName,position:cPos,color:fCol,history:hist}); renderCurrentView(); alert(`✅ Actualizada en ${newD}`); return true; } else return createNewGuardia(newD,cName,cPos,fCol,ent,sal); }
-  function createNewGuardia(d,n,p,c,ent,sal){ if(guards.has(d)&&!confirm(`Ya existe guardia en ${d}. ¿Sobrescribir?`)) return false; guards.set(d,{personName:n,position:p,color:c,history:[]}); if(ent&&sal) horarios.set(d,{entrada:ent,salida:sal}); renderCurrentView(); alert(`✅ Creada en ${d}`); return true; }
+  
+  function saveGuardiaWithOptionalMove(orig,newD,nombres,pos,col,ent,sal){ 
+    if(!nombres || nombres.length === 0){ alert("Seleccione al menos un responsable"); return false; } 
+    if(!isSaturday(newD)){ alert(`❌ ${newD} es ${getDayOfWeekSpanish(newD)}. Solo sábados.`); return false; } 
+    if(ent&&sal){ let [eh,em]=ent.split(':'),[sh,sm]=sal.split(':'); if(!validarHorario(eh,em,sh,sm)){ alert("Salida debe ser posterior"); return false; } } 
+    let cNombres = nombres.map(n => n.trim());
+    let cPos = pos?pos.trim():"Sin especificar";
+    let fCol = col || getColorForPerson(cNombres[0]);
+    let existNew=guards.get(newD), moving=(orig&&orig!==newD);
+    if(ent&&sal) horarios.set(newD,{entrada:ent,salida:sal});
+    else if(horarios.has(newD) && !ent && !sal) horarios.delete(newD);
+    if(moving){ 
+      let origG=guards.get(orig); 
+      if(!origG) return createNewGuardia(newD,cNombres,cPos,fCol,ent,sal); 
+      if(existNew&&orig!==newD){ 
+        if(!confirm(`⚠️ Ya existe guardia de ${existNew.personNames.join(", ")} el ${newD}. ¿Reemplazar?`)) return false; 
+      } 
+      let newHist=[...(origG.history||[])]; 
+      newHist.push({type:"movimiento",previousDate:orig,previousPerson:origG.personNames.join(", "),previousPosition:origG.position,newDate:newD,newPerson:cNombres.join(", "),changedAt:new Date().toISOString(),description:`Movimiento ${orig} → ${newD}`}); 
+      if(origG.personNames.join(",")!==cNombres.join(",")||origG.position!==cPos||origG.color!==fCol) newHist.push({type:"edición",previousDate:newD,previousPerson:origG.personNames.join(", "),changedAt:new Date().toISOString(),newPerson:cNombres.join(", "),description:`Edición: ${origG.personNames.join(", ")} → ${cNombres.join(", ")}`}); 
+      guards.set(newD,{personNames:cNombres,position:cPos,color:fCol,history:newHist}); 
+      guards.delete(orig); 
+      renderCurrentView(); 
+      alert(`✅ MOVIDA de ${orig} a ${newD}`); 
+      return true; 
+    } else if(orig&&orig===newD){ 
+      let ex=guards.get(newD); 
+      let hist=ex?[...(ex.history||[])]:[]; 
+      if(ex&&(ex.personNames.join(",")!==cNombres.join(",")||ex.position!==cPos||ex.color!==fCol)) hist.push({type:"edición",previousDate:newD,previousPerson:ex.personNames.join(", "),changedAt:new Date().toISOString(),newPerson:cNombres.join(", "),description:`Edición: ${ex.personNames.join(", ")} → ${cNombres.join(", ")}`}); 
+      guards.set(newD,{personNames:cNombres,position:cPos,color:fCol,history:hist}); 
+      renderCurrentView(); 
+      alert(`✅ Actualizada en ${newD}`); 
+      return true; 
+    } else return createNewGuardia(newD,cNombres,cPos,fCol,ent,sal); 
+  }
+  
+  function createNewGuardia(d,nombres,p,c,ent,sal){ 
+    if(guards.has(d)&&!confirm(`Ya existe guardia en ${d}. ¿Sobrescribir?`)) return false; 
+    guards.set(d,{personNames:nombres,position:p,color:c,history:[]}); 
+    if(ent&&sal) horarios.set(d,{entrada:ent,salida:sal}); 
+    renderCurrentView(); 
+    alert(`✅ Creada en ${d}`); 
+    return true; 
+  }
+  
   function removeGuardia(d){ if(guards.has(d)){ guards.delete(d); horarios.delete(d); renderCurrentView(); return true; } return false; }
-  function saveApunte(d,titulo,texto){ if(!titulo || titulo.trim()===""){ alert("El título es obligatorio"); return false; } apuntes.set(d,{ titulo: titulo.trim(), texto: texto.trim() || "", fechaCreacion: new Date().toLocaleString() }); renderCurrentView(); saveToLocal(); alert("✅ Nota guardada"); return true; }
+  
+  function saveApunteWithOptionalMove(origDate, newDate, titulo, texto, responsables, puesto, eH, eM, sH, sM, color){ 
+    if(!titulo || titulo.trim()===""){ alert("El título es obligatorio"); return false; } 
+    if(!responsables || responsables.length === 0){ alert("Seleccione al menos un responsable"); return false; }
+    let horarioTexto = "";
+    if(eH && eM && sH && sM) {
+      horarioTexto = `${eH}:${eM} - ${sH}:${sM}`;
+      if(!validarHorario(eH,eM,sH,sM)) {
+        alert("La hora de salida debe ser posterior a la entrada");
+        return false;
+      }
+    } else {
+      horarioTexto = "Sin horario";
+    }
+    
+    let moving = (origDate && origDate !== newDate);
+    
+    if(moving) {
+      if(apuntes.has(newDate)) {
+        if(!confirm(`⚠️ Ya existe una nota en ${newDate}. ¿Reemplazar?`)) return false;
+      }
+      apuntes.delete(origDate);
+    }
+    
+    apuntes.set(newDate,{ 
+      titulo: titulo.trim(), 
+      texto: texto.trim() || "", 
+      fechaCreacion: new Date().toLocaleString(),
+      responsables: responsables.map(r => r.trim()),
+      puesto: puesto || "Sin puesto",
+      horario: horarioTexto,
+      color: color || "#f59e0b",
+      fechaOriginal: moving ? origDate : null
+    }); 
+    
+    renderCurrentView(); 
+    saveToLocal(); 
+    alert(`✅ Nota ${moving ? 'movida y ' : ''}guardada`); 
+    return true; 
+  }
+  
   function removeApunte(d){ if(apuntes.has(d)){ apuntes.delete(d); renderCurrentView(); saveToLocal(); } }
   function saveToLocal(){ localStorage.setItem("guardiasApp",JSON.stringify({guards:Array.from(guards.entries()),horarios:Array.from(horarios.entries()),apuntes:Array.from(apuntes.entries()),currentYear,currentView,currentMonth,currentSelectedDate})); }
   function loadFromLocal(){ let raw=localStorage.getItem("guardiasApp"); if(raw){ let d=JSON.parse(raw); if(d.guards) guards=new Map(d.guards); if(d.horarios) horarios=new Map(d.horarios); if(d.apuntes) apuntes=new Map(d.apuntes); if(d.currentYear) currentYear=d.currentYear; if(d.currentView) currentView=d.currentView; if(d.currentMonth!==undefined) currentMonth=d.currentMonth; if(d.currentSelectedDate) currentSelectedDate=d.currentSelectedDate; } }
-  function cargarPersonas(){ let st=localStorage.getItem("personasRegistradas"); if(st) personasRegistradas=new Map(JSON.parse(st)); actualizarSelectPersonas(); actualizarListaPersonasModal(); }
-  function guardarPersonas(){ localStorage.setItem("personasRegistradas",JSON.stringify(Array.from(personasRegistradas.entries()))); actualizarSelectPersonas(); actualizarListaPersonasModal(); }
-  function actualizarSelectPersonas(){ let sel=document.getElementById("personName"); if(!sel) return; let val=sel.value; sel.innerHTML='<option value="" disabled selected>-- Seleccionar persona --</option>'; for(let [nom,pue] of personasRegistradas.entries()){ let op=document.createElement("option"); op.value=nom; op.textContent=nom; if(val===nom) op.selected=true; sel.appendChild(op); } if(personasRegistradas.size>0&&(!sel.value||sel.value==="")){ let first=Array.from(personasRegistradas.keys())[0]; sel.value=first; document.getElementById("personPosition").value=personasRegistradas.get(first)||""; } }
+  
+  function cargarPersonas(){ 
+    let st=localStorage.getItem("personasRegistradas"); 
+    if(st) personasRegistradas=new Map(JSON.parse(st)); 
+    if (guardiaDropdown) {
+      guardiaDropdown.refresh();
+      const sel = guardiaDropdown.getSelected();
+      guardiaDropdown.setSelected(sel);
+    }
+    if (apunteDropdown) {
+      apunteDropdown.refresh();
+      const sel = apunteDropdown.getSelected();
+      apunteDropdown.setSelected(sel);
+    }
+    actualizarListaPersonasModal(); 
+  }
+  
+  function guardarPersonas(){ 
+    localStorage.setItem("personasRegistradas",JSON.stringify(Array.from(personasRegistradas.entries()))); 
+    if (guardiaDropdown) {
+      guardiaDropdown.refresh();
+      const sel = guardiaDropdown.getSelected();
+      guardiaDropdown.setSelected(sel);
+    }
+    if (apunteDropdown) {
+      apunteDropdown.refresh();
+      const sel = apunteDropdown.getSelected();
+      apunteDropdown.setSelected(sel);
+    }
+    actualizarListaPersonasModal(); 
+  }
+  
+  function obtenerSeleccionadosGuardia() {
+    if (guardiaDropdown) return guardiaDropdown.getSelected();
+    return [];
+  }
+  
+  function obtenerSeleccionadosApunte() {
+    if (apunteDropdown) return apunteDropdown.getSelected();
+    return [];
+  }
   
   function habilitarEdicionPersona(elementoNombre, elementoPuesto, nombreOriginal, puestoOriginal) {
       const inputNombre = document.createElement('input');
@@ -856,14 +1748,26 @@
               personasRegistradas.set(nuevoNombre, nuevoPuesto);
               personasRegistradas.delete(nombreOriginal);
               for (let [fecha, guardia] of guards.entries()) {
-                  if (guardia.personName === nombreOriginal) {
-                      guardia.personName = nuevoNombre;
-                      guardia.color = getColorForPerson(nuevoNombre);
+                  if (guardia.personNames.includes(nombreOriginal)) {
+                      guardia.personNames = guardia.personNames.map(n => n === nombreOriginal ? nuevoNombre : n);
+                      guardia.color = getColorForPerson(guardia.personNames[0]);
                       guards.set(fecha, guardia);
+                  }
+              }
+              for (let [fecha, nota] of apuntes.entries()) {
+                  if (nota.responsables.includes(nombreOriginal)) {
+                      nota.responsables = nota.responsables.map(n => n === nombreOriginal ? nuevoNombre : n);
+                      apuntes.set(fecha, nota);
                   }
               }
           } else {
               personasRegistradas.set(nombreOriginal, nuevoPuesto);
+              for (let [fecha, nota] of apuntes.entries()) {
+                  if (nota.responsables.includes(nombreOriginal)) {
+                      nota.puesto = nuevoPuesto;
+                      apuntes.set(fecha, nota);
+                  }
+              }
           }
           guardarPersonas();
           renderCurrentView();
@@ -908,6 +1812,17 @@
                  </div>`; 
       } 
       cont.innerHTML=html; 
+      
+      document.querySelectorAll('.btn-eliminar-persona').forEach(b=>{
+        b.addEventListener('click', function(e) {
+          e.stopPropagation();
+          let nom = this.getAttribute('data-nombre');
+          if(confirm(`¿Eliminar a "${nom}"? Se eliminarán sus guardias y notas.`)){ 
+            eliminarPersonaCompleta(nom); 
+          }
+        });
+      });
+      
       document.querySelectorAll('.persona-info').forEach(info => {
           const nombreSpan = info.querySelector('.persona-nombre');
           const puestoSpan = info.querySelector('.persona-puesto');
@@ -918,18 +1833,193 @@
               puestoSpan.addEventListener('dblclick', () => habilitarEdicionPersona(nombreSpan, puestoSpan, nombreOriginal, puestoOriginal));
           }
       });
-      document.querySelectorAll('.btn-eliminar-persona').forEach(b=>b.addEventListener('click',()=>{ let nom=b.getAttribute('data-nombre'); if(confirm(`¿Eliminar a "${nom}"? Se eliminarán sus guardias.`)) eliminarPersonaCompleta(nom); })); 
   }
   
-  function eliminarPersonaCompleta(nom){ personasRegistradas.delete(nom); for(let [f,g] of guards.entries()) if(g.personName===nom){ guards.delete(f); horarios.delete(f); } guardarPersonas(); saveToLocal(); renderCurrentView(); actualizarSelectPersonas(); actualizarListaPersonasModal(); alert(`✅ "${nom}" y sus guardias eliminados`); }
-  function escapeHtml(t){ if(!t) return ''; return t.replace(/[&<>]/g,function(m){if(m==='&')return'&amp;';if(m==='<')return'&lt;';if(m==='>')return'&gt;';return m;}); }
-  function abrirModalPersonas(){ actualizarListaPersonasModal(); document.getElementById("personasModal").style.display="flex"; }
-  function cerrarModalPersonas(){ document.getElementById("personasModal").style.display="none"; document.getElementById("nuevaPersonaNombre").value=""; document.getElementById("nuevaPersonaPuesto").value=""; }
-  function agregarNuevaPersona(){ let nom=document.getElementById("nuevaPersonaNombre").value.trim(), pue=document.getElementById("nuevaPersonaPuesto").value.trim(); if(!nom||!pue){ alert("Complete ambos campos"); return; } if(personasRegistradas.has(nom)){ alert("Ya existe"); return; } personasRegistradas.set(nom,pue); guardarPersonas(); document.getElementById("nuevaPersonaNombre").value=""; document.getElementById("nuevaPersonaPuesto").value=""; alert(`✅ "${nom}" agregado`); }
-  function onPersonaSeleccionada(){ let s=document.getElementById("personName"); if(s.value&&personasRegistradas.has(s.value)) document.getElementById("personPosition").value=personasRegistradas.get(s.value); else document.getElementById("personPosition").value=""; }
-  function obtenerPersonasConGuardias(){ let map=new Map(); for(let [f,g] of guards.entries()){ let h=horarios.get(f); if(!map.has(g.personName)) map.set(g.personName,[]); map.get(g.personName).push({fecha:f,puesto:g.position,horario:h?`${h.entrada} - ${h.salida}`:'Sin horario'}); } return Array.from(map.entries()).sort((a,b)=>a[0].localeCompare(b[0])); }
+  function eliminarPersonaCompleta(nom){ 
+    personasRegistradas.delete(nom); 
+    for(let [f,g] of guards.entries()) { 
+      if(g.personNames.includes(nom)) { 
+        g.personNames = g.personNames.filter(n => n !== nom);
+        if(g.personNames.length === 0) {
+          guards.delete(f); 
+          horarios.delete(f);
+        } else {
+          guards.set(f, g);
+        }
+      } 
+    } 
+    for(let [f,a] of apuntes.entries()) { 
+      if(a.responsables.includes(nom)) { 
+        a.responsables = a.responsables.filter(n => n !== nom);
+        if(a.responsables.length === 0) {
+          apuntes.delete(f);
+        } else {
+          apuntes.set(f, a);
+        }
+      } 
+    }
+    guardarPersonas(); 
+    saveToLocal(); 
+    renderCurrentView(); 
+    actualizarListaPersonasModal();
+    if (guardiaDropdown) {
+      guardiaDropdown.refresh();
+      const sel = guardiaDropdown.getSelected();
+      guardiaDropdown.setSelected(sel);
+    }
+    if (apunteDropdown) {
+      apunteDropdown.refresh();
+      const sel = apunteDropdown.getSelected();
+      apunteDropdown.setSelected(sel);
+    }
+    alert(`✅ "${nom}" eliminado de guardias y notas`); 
+  }
   
-  function mostrarModalEnvio(tipo){ let personas=obtenerPersonasConGuardias(); if(personas.length===0){ Swal.fire('Sin datos','No hay guardias','warning'); return; } let div=document.createElement('div'); div.className='modal'; div.style.display='flex'; div.innerHTML=`<div class="modal-content"><h3>${tipo==='whatsapp'?'📱 Enviar WhatsApp':'✉️ Enviar Correo'}</h3><select id="personaSelect"><option value="" disabled selected>-- Seleccionar persona --</option>${personas.map(([n])=>`<option value="${n.replace(/"/g,'&quot;')}">${n}</option>`).join('')}</select><div class="modal-buttons"><button id="confirmarEnvio" class="btn-primary">Enviar</button><button id="cancelarEnvio" class="btn-secondary">Cancelar</button></div></div>`; document.body.appendChild(div); document.getElementById('confirmarEnvio').onclick=()=>{ let nom=document.getElementById('personaSelect').value; if(!nom){ Swal.fire('Error','Seleccione','warning'); return; } let msg=generarMensajeGuardias(nom,personas.find(([n])=>n===nom)[1]); if(tipo==='whatsapp') window.open(`https://web.whatsapp.com/send?text=${encodeURIComponent(msg)}`,'_blank'); else window.location.href=`mailto:?subject=${encodeURIComponent(`Guardias - ${nom}`)}&body=${encodeURIComponent(msg)}`; div.remove(); Swal.fire('Éxito',`Se abrió ${tipo==='whatsapp'?'WhatsApp':'correo'}`, 'success'); }; document.getElementById('cancelarEnvio').onclick=()=>div.remove(); }
+  function escapeHtml(t){ if(!t) return ''; return t.replace(/[&<>]/g,function(m){if(m==='&')return'&amp;';if(m==='<')return'&lt;';if(m==='>')return'&gt;';return m;}); }
+  
+  function abrirModalPersonas(modalOrigen) {
+    if (modalOrigen) {
+      window._modalOrigen = modalOrigen;
+      if (modalOrigen === 'apunte') {
+        document.getElementById("apunteModal").style.display = "none";
+      } else if (modalOrigen === 'guardia') {
+        document.getElementById("guardiaModal").style.display = "none";
+      }
+    }
+    actualizarListaPersonasModal(); 
+    document.getElementById("personasModal").style.display = "flex"; 
+  }
+  
+  function cerrarModalPersonas(){ 
+    document.getElementById("personasModal").style.display="none"; 
+    document.getElementById("nuevaPersonaNombre").value=""; 
+    document.getElementById("nuevaPersonaPuesto").value="";
+    
+    if (window._modalOrigen === 'apunte') {
+      let fechaActual = document.getElementById("apunteFecha").value;
+      if (fechaActual) {
+        document.getElementById("apunteModal").style.display = "flex";
+        if (apunteDropdown) {
+          apunteDropdown.refresh();
+          const exist = apuntes.get(fechaActual);
+          if (exist && exist.responsables) {
+            apunteDropdown.setSelected(exist.responsables);
+            if (exist.responsables.length === 1 && personasRegistradas.has(exist.responsables[0])) {
+              document.getElementById("apuntePersonPosition").value = personasRegistradas.get(exist.responsables[0]) || exist.puesto;
+            }
+          }
+        }
+      }
+    } else if (window._modalOrigen === 'guardia') {
+      let fechaActual = document.getElementById("modalDate").value;
+      if (fechaActual) {
+        document.getElementById("guardiaModal").style.display = "flex";
+        if (guardiaDropdown) {
+          guardiaDropdown.refresh();
+          const ex = guards.get(fechaActual);
+          if (ex && ex.personNames) {
+            guardiaDropdown.setSelected(ex.personNames);
+            if (ex.personNames.length === 1 && personasRegistradas.has(ex.personNames[0])) {
+              document.getElementById("personPosition").value = personasRegistradas.get(ex.personNames[0]) || ex.position;
+            }
+          }
+        }
+      }
+    }
+    window._modalOrigen = null;
+  }
+  
+  function agregarNuevaPersona(){ 
+    let nom=document.getElementById("nuevaPersonaNombre").value.trim(), 
+        pue=document.getElementById("nuevaPersonaPuesto").value.trim(); 
+    if(!nom||!pue){ alert("Complete ambos campos"); return; } 
+    if(personasRegistradas.has(nom)){ alert("Ya existe"); return; } 
+    personasRegistradas.set(nom,pue); 
+    guardarPersonas(); 
+    document.getElementById("nuevaPersonaNombre").value=""; 
+    document.getElementById("nuevaPersonaPuesto").value=""; 
+    actualizarListaPersonasModal();
+    if (guardiaDropdown) {
+      guardiaDropdown.refresh();
+    }
+    if (apunteDropdown) {
+      apunteDropdown.refresh();
+    }
+    alert(`✅ "${nom}" agregado`); 
+  }
+  
+  function obtenerPersonasConGuardias(){ 
+    let map=new Map(); 
+    for(let [f,g] of guards.entries()){ 
+      let h=horarios.get(f); 
+      let nombres = g.personNames || [g.personName]; 
+      nombres.forEach(nom => { 
+        if(!map.has(nom)) map.set(nom,[]); 
+        map.get(nom).push({fecha:f,puesto:g.position,horario:h?`${h.entrada} - ${h.salida}`:'Sin horario'}); 
+      }); 
+    } 
+    return Array.from(map.entries()).sort((a,b)=>a[0].localeCompare(b[0])); 
+  }
+  
+  function mostrarModalEnvio(tipo){ 
+    if (soloLectura) {
+      Swal.fire('Acceso restringido', 'Solo Control Interno puede enviar mensajes', 'warning');
+      return;
+    }
+    let personas = obtenerPersonasConGuardias();
+    let personasNotas = new Set();
+    for (let [fecha, nota] of apuntes.entries()) {
+      let responsables = nota.responsables || [];
+      responsables.forEach(nom => personasNotas.add(nom));
+    }
+    
+    let todasPersonas = new Set();
+    personas.forEach(([nom]) => todasPersonas.add(nom));
+    personasNotas.forEach(nom => todasPersonas.add(nom));
+    
+    if(todasPersonas.size === 0 && apuntes.size === 0){ 
+      Swal.fire('Sin datos','No hay guardias ni notas','warning'); 
+      return; 
+    } 
+    
+    let div=document.createElement('div'); 
+    div.className='modal'; 
+    div.style.display='flex'; 
+    div.style.zIndex='17000';
+    
+    let optionsHtml = `<option value="todos">📋 Todos</option>`;
+    let personasOrdenadas = Array.from(todasPersonas).sort();
+    personasOrdenadas.forEach(nom => {
+      optionsHtml += `<option value="${nom.replace(/"/g,'&quot;')}">${nom}</option>`;
+    });
+    
+    div.innerHTML=`<div class="modal-content"><h3>${tipo==='whatsapp'?'📱 Enviar WhatsApp':'✉️ Enviar Correo'}</h3>
+      <select id="personaSelect" style="margin-bottom:12px;">
+        ${optionsHtml}
+      </select>
+      <div style="font-size:0.7rem; color:#6f8aaa; text-align:center; margin-bottom:8px;">⬇️ Selecciona una persona para enviar SOLO sus guardias y notas, o "Todos" para enviar todo</div>
+      <div class="modal-buttons"><button id="confirmarEnvio" class="btn-primary">Enviar</button><button id="cancelarEnvio" class="btn-secondary">Cancelar</button></div></div>`; 
+    document.body.appendChild(div); 
+    
+    document.getElementById('confirmarEnvio').onclick=()=>{ 
+      let nom=document.getElementById('personaSelect').value; 
+      let msg = "";
+      if(nom === "todos" || !nom) {
+        msg = generarMensajeTodos();
+      } else {
+        msg = generarMensajeParaPersona(nom);
+      }
+      if(tipo==='whatsapp') {
+        window.open(`https://web.whatsapp.com/send?text=${encodeURIComponent(msg)}`,'_blank'); 
+      } else {
+        window.location.href=`mailto:?subject=${encodeURIComponent('Reporte de Guardias y Notas')}&body=${encodeURIComponent(msg)}`; 
+      }
+      div.remove(); 
+      Swal.fire('Éxito',`Se abrió ${tipo==='whatsapp'?'WhatsApp':'correo'}`, 'success'); 
+    }; 
+    document.getElementById('cancelarEnvio').onclick=()=>div.remove(); 
+  }
+  
   async function exportarJSON(){ 
   let data={version:"1.0",exportDate:new Date().toISOString(),guards:Array.from(guards.entries()),horarios:Array.from(horarios.entries()),apuntes:Array.from(apuntes.entries())}; 
   let str=JSON.stringify(data,null,2),blob=new Blob([str],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');
@@ -955,12 +2045,180 @@
   Swal.fire('Exportado','Datos exportados a Descargas','success');
 }
   async function importarJSON(file){ return new Promise((resolve,reject)=>{ let reader=new FileReader(); reader.onload=async function(e){ try{ let imp=JSON.parse(e.target.result),nuevosGuards=imp.guards||[],nuevosHorarios=imp.horarios||[],nuevosApuntes=imp.apuntes||[],agregados=0,duplicados=0; for(let [f,g] of nuevosGuards){ if(!guards.has(f)){ guards.set(f,g); agregados++; } else duplicados++; } for(let [f,h] of nuevosHorarios) if(!horarios.has(f)) horarios.set(f,h); for(let [f,a] of nuevosApuntes) if(!apuntes.has(f)) apuntes.set(f,a); saveToLocal(); renderCurrentView(); Swal.fire('Importación',`Agregados: ${agregados}, omitidos: ${duplicados}`,'success'); resolve(true); }catch(err){ Swal.fire('Error','Formato inválido','error'); reject(err); } }; reader.onerror=()=>reject(new Error('Lectura fallida')); reader.readAsText(file); }); }
-  function showHistoryModal(d){ let g=guards.get(d); if(!g) return; let h=horarios.get(d); let modal=document.getElementById("historyModal"); let cont=document.getElementById("historyContent"); modal.setAttribute("data-current-date",d); let html=`<div style="background:#eef3fc; padding:12px; border-radius:1rem;"><strong>📅 ${d} (${getDayOfWeekSpanish(d)})</strong><br>👤 ${g.personName}<br>💼 ${g.position}${h?`<br>🕒 ${h.entrada} - ${h.salida}`:''}</div>`; if(g.history?.length){ html+=`<div class="history-list"><strong>📜 ${g.history.length} cambios</strong><br>`; [...g.history].reverse().forEach(e=>{ html+=`<div style="margin-bottom:12px;"><div class="badge-change">${e.type==='movimiento'?'🔄 MOVIMIENTO':'✏️ EDICIÓN'}</div>📆 ${e.previousDate} → ${e.newDate||e.previousDate}<br>👤 ${e.previousPerson} → ${e.newPerson||g.personName}<br>🕒 ${new Date(e.changedAt).toLocaleString()}<br>📝 ${e.description}</div><hr style="margin:8px 0;">`; }); html+=`</div>`; } else html+=`<div style="padding:16px;text-align:center;">✨ Sin cambios previos</div>`; cont.innerHTML=html; modal.style.display="flex"; }
+  
+  function showHistoryModal(d){ 
+    let g=guards.get(d); 
+    if(!g) return; 
+    let h=horarios.get(d); 
+    let modal=document.getElementById("historyModal"); 
+    let cont=document.getElementById("historyContent"); 
+    modal.setAttribute("data-current-date",d); 
+    let nombres = g.personNames || [g.personName];
+    let html=`<div style="background:#eef3fc; padding:12px; border-radius:1rem;"><strong>📅 ${d} (${getDayOfWeekSpanish(d)})</strong><br>👤 ${nombres.join(", ")}<br>💼 ${g.position}${h?`<br>🕒 ${h.entrada} - ${h.salida}`:''}</div>`; 
+    if(g.history?.length){ 
+      html+=`<div class="history-list"><strong>📜 ${g.history.length} cambios</strong><br>`; 
+      [...g.history].reverse().forEach(e=>{ 
+        html+=`<div style="margin-bottom:12px;"><div class="badge-change">${e.type==='movimiento'?'🔄 MOVIMIENTO':'✏️ EDICIÓN'}</div>📆 ${e.previousDate} → ${e.newDate||e.previousDate}<br>👤 ${e.previousPerson} → ${e.newPerson||nombres.join(", ")}<br>🕒 ${new Date(e.changedAt).toLocaleString()}<br>📝 ${e.description}</div><hr style="margin:8px 0;">`; 
+      }); 
+      html+=`</div>`; 
+    } else html+=`<div style="padding:16px;text-align:center;">✨ Sin cambios previos</div>`; 
+    cont.innerHTML=html; 
+    modal.style.display="flex"; 
+  }
+  
   function closeHistoryModal(){ document.getElementById("historyModal").style.display="none"; }
-  function openApunteModal(d){ if(soloLectura){ alert("Perfil Visitante: no puede modificar apuntes, solo visualizar."); return; } let modal=document.getElementById("apunteModal"); document.getElementById("apunteFecha").innerHTML=`<strong>📅 ${d} (${getDayOfWeekSpanish(d)})</strong>`; modal.setAttribute("data-current-date",d); let exist=apuntes.get(d); let tituloInput=document.getElementById("apunteTitulo"); let textoArea=document.getElementById("apunteTexto"); if(exist){ tituloInput.value=exist.titulo || ""; textoArea.value=exist.texto || ""; document.getElementById("deleteApunteBtn").style.display="inline-block"; } else { tituloInput.value=""; textoArea.value=""; document.getElementById("deleteApunteBtn").style.display="none"; } modal.style.display="flex"; }
-  function closeApunteModal(){ document.getElementById("apunteModal").style.display="none"; document.getElementById("apunteTitulo").value=""; document.getElementById("apunteTexto").value=""; }
-  function saveApunteFromModal(){ let d=document.getElementById("apunteModal").getAttribute("data-current-date"); let titulo=document.getElementById("apunteTitulo").value.trim(); let texto=document.getElementById("apunteTexto").value; if(!titulo){ alert("El título de la nota es obligatorio"); return; } saveApunte(d,titulo,texto); closeApunteModal(); }
-  function deleteApunteFromModal(){ let d=document.getElementById("apunteModal").getAttribute("data-current-date"); if(confirm("¿Eliminar esta nota?")){ removeApunte(d); closeApunteModal(); } }
+  
+  function openApunteModal(d){ 
+    if(soloLectura){ 
+      let exist=apuntes.get(d);
+      if(exist) {
+        let responsables = exist.responsables || ["Sin responsable"];
+        Swal.fire({
+          title: exist.titulo || "Nota",
+          html: `<div style="text-align:left;">
+            <p><strong>📅 Fecha:</strong> ${d} (${getDayOfWeekSpanish(d)})</p>
+            <p><strong>👤 Responsables:</strong> ${responsables.join(", ")}</p>
+            <p><strong>💼 Puesto:</strong> ${exist.puesto || "Sin puesto"}</p>
+            <p><strong>🕒 Horario:</strong> ${exist.horario || "Sin horario"}</p>
+            <hr>
+            <p><strong>📝 ${exist.titulo || "Sin título"}</strong></p>
+            <p>${exist.texto || "Sin contenido"}</p>
+          </div>`,
+          icon: "info",
+          confirmButtonColor: "#1a5d8c"
+        });
+      } else {
+        alert("No hay nota registrada para esta fecha");
+      }
+      return; 
+    } 
+    
+    let modal=document.getElementById("apunteModal"); 
+    currentApunteOriginalDate = d;
+    
+    let fechaDisplay = document.getElementById("apunteFechaDisplay");
+    fechaDisplay.innerHTML = `<strong>📅 Fecha actual:</strong> ${d} (${getDayOfWeekSpanish(d)})`;
+    
+    document.getElementById("apunteFecha").value = d;
+    
+    let existeNota = apuntes.has(d);
+    document.getElementById("apunteDateChangeWarning").style.display = existeNota ? "block" : "none";
+    
+    let exist=apuntes.get(d); 
+    let tituloInput=document.getElementById("apunteTitulo"); 
+    let textoArea=document.getElementById("apunteTexto");
+    let colorInput=document.getElementById("apunteColor");
+    let preview=document.getElementById("apunteColorPreview");
+    
+    if (!apunteDropdown) {
+      apunteDropdown = crearDropdownCheckbox('apunteDropdownContainer', [], function(selected) {
+        if (selected.length === 1 && personasRegistradas.has(selected[0])) {
+          document.getElementById("apuntePersonPosition").value = personasRegistradas.get(selected[0]);
+        } else if (selected.length !== 1) {
+          document.getElementById("apuntePersonPosition").value = "";
+        }
+      });
+    } else {
+      apunteDropdown.refresh();
+    }
+    
+    llenarSelectoresApunte("", "", "", "");
+    
+    if(exist){ 
+      tituloInput.value=exist.titulo || ""; 
+      textoArea.value=exist.texto || "";
+      if (exist.responsables) {
+        apunteDropdown.setSelected(exist.responsables);
+        if (exist.responsables.length === 1 && personasRegistradas.has(exist.responsables[0])) {
+          document.getElementById("apuntePersonPosition").value = personasRegistradas.get(exist.responsables[0]) || exist.puesto;
+        } else {
+          document.getElementById("apuntePersonPosition").value = exist.puesto || "";
+        }
+      }
+      if(exist.color) {
+        colorInput.value=exist.color;
+        preview.style.background=exist.color;
+      } else {
+        colorInput.value="#f59e0b";
+        preview.style.background="#f59e0b";
+      }
+      if(exist.horario && exist.horario !== "Sin horario") {
+        let partes = exist.horario.split(" - ");
+        if(partes.length === 2) {
+          let entrada = partes[0].split(":");
+          let salida = partes[1].split(":");
+          if(entrada.length === 2 && salida.length === 2) {
+            llenarSelectoresApunte(entrada[0], entrada[1], salida[0], salida[1]);
+          }
+        }
+      }
+      document.getElementById("deleteApunteBtn").style.display="inline-block"; 
+    } else { 
+      tituloInput.value=""; 
+      textoArea.value="";
+      apunteDropdown.setSelected([]);
+      document.getElementById("apuntePersonPosition").value="";
+      colorInput.value="#f59e0b";
+      preview.style.background="#f59e0b";
+      llenarSelectoresApunte("", "", "", "");
+      document.getElementById("deleteApunteBtn").style.display="none"; 
+    } 
+    modal.style.display="flex"; 
+  }
+  
+  function closeApunteModal(){ 
+    document.getElementById("apunteModal").style.display="none"; 
+    document.getElementById("apunteTitulo").value=""; 
+    document.getElementById("apunteTexto").value="";
+    document.getElementById("apuntePersonPosition").value="";
+    currentApunteOriginalDate = null;
+    window._modalOrigen = null;
+  }
+  
+  function saveApunteFromModal(){ 
+    let newDate = document.getElementById("apunteFecha").value;
+    let titulo=document.getElementById("apunteTitulo").value.trim(); 
+    let texto=document.getElementById("apunteTexto").value;
+    let responsables = apunteDropdown ? apunteDropdown.getSelected() : [];
+    let puesto=document.getElementById("apuntePersonPosition").value.trim();
+    let color=document.getElementById("apunteColor").value;
+    let eH=document.getElementById("apunteHoraEntradaH").value;
+    let eM=document.getElementById("apunteHoraEntradaM").value;
+    let sH=document.getElementById("apunteHoraSalidaH").value;
+    let sM=document.getElementById("apunteHoraSalidaM").value;
+    
+    if(!newDate){ 
+      alert("Debe seleccionar una fecha"); 
+      return; 
+    }
+    if(!titulo){ 
+      alert("El título de la nota es obligatorio"); 
+      return; 
+    } 
+    if(responsables.length === 0){ 
+      alert("Debe seleccionar al menos un responsable"); 
+      return; 
+    }
+    
+    if(eH && eM && sH && sM) {
+      if(!validarHorario(eH, eM, sH, sM)) {
+        alert("La hora de salida debe ser posterior a la entrada");
+        return;
+      }
+    }
+    
+    saveApunteWithOptionalMove(currentApunteOriginalDate, newDate, titulo, texto, responsables, puesto, eH, eM, sH, sM, color); 
+    closeApunteModal(); 
+  }
+  
+  function deleteApunteFromModal(){ 
+    let d = document.getElementById("apunteFecha").value;
+    if(!d) return;
+    if(confirm(`¿Eliminar la nota del ${d}?`)){ 
+      removeApunte(d); 
+      closeApunteModal(); 
+    } 
+  }
   
   function renderCurrentView(){ 
     if(currentView==="day") {
@@ -1010,21 +2268,36 @@
     
     fechaFormateada = fechaFormateada.charAt(0).toUpperCase() + fechaFormateada.slice(1);
     
+    let notaHtml = '';
+    if(a) {
+      let color = a.color || '#f59e0b';
+      let responsables = a.responsables || ["Sin responsable"];
+      notaHtml = `<div style="margin-top:12px; background:${color}15; border-left:4px solid ${color}; padding:12px; border-radius:1rem;">
+        <strong>📌 ${escapeHtml(a.titulo)}</strong><br>
+        👤 ${responsables.join(", ")} · ${escapeHtml(a.puesto || "Sin puesto")}<br>
+        🕒 ${escapeHtml(a.horario || "Sin horario")}<br>
+        ${escapeHtml(a.texto.substring(0,150))}${a.texto.length > 150 ? '...' : ''}
+      </div>`;
+    }
+    
+    let guardiaHtml = '';
+    if(g) {
+      let nombres = g.personNames || [g.personName];
+      guardiaHtml = `<div style="margin-top:1rem; border-left:4px solid ${g.color}; padding:12px; background:${g.color}08; border-radius:1rem;" onclick="showHistoryModal('${d}')">
+        <strong>👤 ${nombres.join(", ")}</strong> · ${g.position}
+        ${h ? `<br>🕒 ${h.entrada} - ${h.salida}` : ''}
+        <div style="margin-top:6px;">📜 ${g.history?.length || 0} cambios</div>
+      </div>`;
+    }
+    
     cont.innerHTML = `<div style="background:white; border-radius:1.5rem; padding:1rem;">
       <h2 style="color:#1a5d8c; font-size:1.2rem; word-break:break-word;">${fechaFormateada}</h2>
       <div style="margin:1rem 0; padding:1rem; background:#f5faff; border-radius:1rem;">
         <span style="background:${sat?'#e2f0e8':'#feeceb'}; padding:4px 14px; border-radius:40px; display:inline-block; margin-bottom:12px;">
           ${sat?'✅ SÁBADO':'❌ ' + getDayOfWeekSpanish(d).toUpperCase()}
         </span>
-        ${g ? `<div style="margin-top:1rem; border-left:4px solid ${g.color}; padding:12px; background:${g.color}08; border-radius:1rem;" onclick="showHistoryModal('${d}')">
-          <strong>👤 ${g.personName}</strong> · ${g.position}
-          ${h ? `<br>🕒 ${h.entrada} - ${h.salida}` : ''}
-          <div style="margin-top:6px;">📜 ${g.history?.length || 0} cambios</div>
-        </div>` : '<div style="margin-top:1rem;">⚡ Sin guardia asignada</div>'}
-        ${a ? `<div style="margin-top:12px; background:#fff0e0; padding:8px; border-radius:1rem;">
-          <strong>📌 ${escapeHtml(a.titulo)}</strong><br>
-          ${escapeHtml(a.texto.substring(0,150))}${a.texto.length > 150 ? '...' : ''}
-        </div>` : ''}
+        ${guardiaHtml || '<div style="margin-top:1rem;">⚡ Sin guardia asignada</div>'}
+        ${notaHtml}
         <div style="margin-top:24px; display:flex; gap:8px; flex-wrap:wrap;">
           <button id="dayPrev" class="btn-secondary">◀ Anterior</button>
           <button id="dayNext" class="btn-secondary">Siguiente ▶</button>
@@ -1075,9 +2348,16 @@
         e.stopPropagation();
         let aTemp = apuntes.get(currentSelectedDate);
         if(aTemp) {
+          let responsables = aTemp.responsables || ["Sin responsable"];
           Swal.fire({
             title: aTemp.titulo, 
-            text: aTemp.texto || "Sin contenido adicional", 
+            html: `<div style="text-align:left;">
+              <p><strong>👤 Responsables:</strong> ${responsables.join(", ")}</p>
+              <p><strong>💼 Puesto:</strong> ${aTemp.puesto || "Sin puesto"}</p>
+              <p><strong>🕒 Horario:</strong> ${aTemp.horario || "Sin horario"}</p>
+              <hr>
+              <p>${aTemp.texto || "Sin contenido"}</p>
+            </div>`,
             icon: "info", 
             confirmButtonColor: "#1a5d8c"
           });
@@ -1102,12 +2382,17 @@
       let dateStr=`${yearFor}-${String(monthFor+1).padStart(2,'0')}-${String(dayNumber).padStart(2,'0')}`,g=guards.get(dateStr),sat=isSaturday(dateStr),h=horarios.get(dateStr),a=apuntes.get(dateStr); 
       let badge=''; 
       if(g){ 
-        badge=`<div class="guardia-badge" data-date="${dateStr}">👤 ${g.personName}<br><small>${g.position}</small>${g.history?.length?' 📜':''}</div>`; 
+        let nombres = g.personNames || [g.personName];
+        let nombreMostrar = nombres.length > 2 ? nombres.slice(0,2).join(", ") + ` +${nombres.length-2}` : nombres.join(", ");
+        badge=`<div class="guardia-badge" data-date="${dateStr}">👤 ${nombreMostrar}<br><small>${g.position}</small>${g.history?.length?' 📜':''}</div>`; 
         if(h) badge+=`<div class="horario-badge">🕒 ${h.entrada}-${h.salida}</div>`; 
       } else if(sat&&isCurrent) badge=`<div class="saturday-badge">📌 Sábado</div>`; 
       if(a){ 
         let tituloCorto=a.titulo.length>20?a.titulo.substring(0,18)+'...':a.titulo; 
-        badge+=`<div class="apunte-badge" data-apunte="${dateStr}" title="${escapeHtml(a.titulo)}: ${escapeHtml(a.texto)}">📝 ${escapeHtml(tituloCorto)}</div>`; 
+        let color = a.color || '#f59e0b';
+        let responsables = a.responsables || ["Sin responsable"];
+        let respCorto = responsables.length > 2 ? responsables.slice(0,2).join(", ") + ` +${responsables.length-2}` : responsables.join(", ");
+        badge+=`<div class="apunte-badge" data-apunte="${dateStr}" style="border-left:2px solid ${color};" title="${escapeHtml(a.titulo)}: ${escapeHtml(a.texto)}">📝 ${escapeHtml(tituloCorto)}<br><small>${escapeHtml(respCorto)}</small></div>`; 
       } 
       html+=`<div class="day-cell ${!isCurrent?'other-month':''}" data-date="${dateStr}"><div class="day-number">${dayNumber}</div>${badge}</div>`; 
     } 
@@ -1123,8 +2408,21 @@
         if(e.target.closest('.apunte-badge')){ 
           if(soloLectura){ 
             let nota=apuntes.get(date); 
-            if(nota) Swal.fire({title:nota.titulo,text:nota.texto||"Sin contenido",icon:"info",confirmButtonColor:"#1a5d8c"}); 
-            else alert("Nota no encontrada"); 
+            if(nota) {
+              let responsables = nota.responsables || ["Sin responsable"];
+              Swal.fire({
+                title: nota.titulo,
+                html: `<div style="text-align:left;">
+                  <p><strong>👤 Responsables:</strong> ${responsables.join(", ")}</p>
+                  <p><strong>💼 Puesto:</strong> ${nota.puesto || "Sin puesto"}</p>
+                  <p><strong>🕒 Horario:</strong> ${nota.horario || "Sin horario"}</p>
+                  <hr>
+                  <p>${nota.texto || "Sin contenido"}</p>
+                </div>`,
+                icon: "info",
+                confirmButtonColor: "#1a5d8c"
+              }); 
+            } else alert("Nota no encontrada"); 
           } else openApunteModal(date); 
           return; 
         } 
@@ -1150,7 +2448,20 @@
           openApunteModal(date); 
         } else { 
           let nota=apuntes.get(date); 
-          if(nota) Swal.fire({title:nota.titulo,text:nota.texto||"Sin contenido",icon:"info"}); 
+          if(nota) {
+            let responsables = nota.responsables || ["Sin responsable"];
+            Swal.fire({
+              title: nota.titulo,
+              html: `<div style="text-align:left;">
+                <p><strong>👤 Responsables:</strong> ${responsables.join(", ")}</p>
+                <p><strong>💼 Puesto:</strong> ${nota.puesto || "Sin puesto"}</p>
+                <p><strong>🕒 Horario:</strong> ${nota.horario || "Sin horario"}</p>
+                <hr>
+                <p>${nota.texto || "Sin contenido"}</p>
+              </div>`,
+              icon: "info"
+            }); 
+          } 
         } 
       }); 
     }); 
@@ -1171,12 +2482,17 @@
         let ds=`${y}-${String(m+1).padStart(2,'0')}-${String(d).padStart(2,'0')}`; 
         if(isSaturday(ds)){ 
           let g=guards.get(ds),h=horarios.get(ds),a=apuntes.get(ds); 
-          saturdays.push({day:d,guard:g?g.personName:null,position:g?.position,color:g?.color,dateStr:ds,horarioTexto:h?`${h.entrada} - ${h.salida}`:null,notaTitulo:a?a.titulo:null}); 
+          saturdays.push({day:d,guard:g?g.personNames.join(", "):null,position:g?.position,color:g?.color,dateStr:ds,horarioTexto:h?`${h.entrada} - ${h.salida}`:null,notaTitulo:a?a.titulo:null,notaResponsables:a?a.responsables:null,notaPuesto:a?a.puesto:null,notaHorario:a?a.horario:null}); 
         } 
       } 
       html+=`<div class="month-card"><div class="month-title">${monthName.toUpperCase()}</div>`; 
       saturdays.forEach(s=>{ 
-        html+=`<div style="margin:6px 0; padding:8px; border-radius:14px; background:${s.guard?(s.color+'15'):'#f9fbfe'}; cursor:pointer;" onclick="showHistoryModal('${s.dateStr}')"><strong>${s.day}</strong> · ${s.guard||'🔘 Sin asignar'}${s.guard&&s.horarioTexto?`<div style="font-size:0.65rem; margin-top:3px;">🕒 ${s.horarioTexto}</div>`:''}${s.notaTitulo?`<div style="font-size:0.6rem; margin-top:3px; color:#c26b1a;">📌 ${escapeHtml(s.notaTitulo)}</div>`:''}</div>`; 
+        let notaInfo = '';
+        if(s.notaTitulo) {
+          let resp = s.notaResponsables ? s.notaResponsables.join(", ") : '';
+          notaInfo = `<div style="font-size:0.6rem; margin-top:3px; color:#c26b1a;">📌 ${escapeHtml(s.notaTitulo)}${resp ? ` · 👤 ${escapeHtml(resp)}` : ''}</div>`;
+        }
+        html+=`<div style="margin:6px 0; padding:8px; border-radius:14px; background:${s.guard?(s.color+'15'):'#f9fbfe'}; cursor:pointer;" onclick="showHistoryModal('${s.dateStr}')"><strong>${s.day}</strong> · ${s.guard||'🔘 Sin asignar'}${s.guard&&s.horarioTexto?`<div style="font-size:0.65rem; margin-top:3px;">🕒 ${s.horarioTexto}</div>`:''}${notaInfo}</div>`; 
       }); 
       html+=`</div>`; 
     } 
@@ -1185,9 +2501,80 @@
   }
   
   let currentEditOriginalDate=null;
-  function openModalForDate(d){ actualizarSelectPersonas(); if(soloLectura){ alert("Perfil Visitante: solo consulta"); return; } if(!isSaturday(d)){ alert(`❌ ${d} es ${getDayOfWeekSpanish(d)}. Solo sábados.`); return; } let modal=document.getElementById("guardiaModal"); document.getElementById("modalDate").value=d; currentEditOriginalDate=d; let ex=guards.get(d),exH=horarios.get(d); let eH='',eM='',sH='',sM=''; if(exH){ let [h1,m1]=exH.entrada.split(':'),[h2,m2]=exH.salida.split(':'); eH=h1; eM=m1; sH=h2; sM=m2; } llenarSelectoresHorario(eH,eM,sH,sM); if(ex){ document.getElementById("modalTitle").innerText="✏️ Editar Guardia (puedes cambiar fecha)"; if(personasRegistradas.has(ex.personName)){ document.getElementById("personName").value=ex.personName; document.getElementById("personPosition").value=personasRegistradas.get(ex.personName)||ex.position; } else { document.getElementById("personName").value=ex.personName; document.getElementById("personPosition").value=ex.position||""; } document.getElementById("personColor").value=ex.color; document.getElementById("colorPreview").style.background=ex.color; document.getElementById("deleteGuardiaModalBtn").style.display="inline-block"; document.getElementById("dateChangeWarning").style.display="block"; } else { document.getElementById("modalTitle").innerText="➕ Nueva Guardia (Sábado)"; document.getElementById("personName").value=""; document.getElementById("personPosition").value=""; document.getElementById("personColor").value="#3b82f6"; document.getElementById("colorPreview").style.background="#3b82f6"; document.getElementById("deleteGuardiaModalBtn").style.display="none"; document.getElementById("dateChangeWarning").style.display="none"; } modal.style.display="flex"; }
+  function openModalForDate(d){ 
+    if(soloLectura){ alert("Perfil Visitante: solo consulta"); return; } 
+    if(!isSaturday(d)){ alert(`❌ ${d} es ${getDayOfWeekSpanish(d)}. Solo sábados.`); return; } 
+    let modal=document.getElementById("guardiaModal"); 
+    document.getElementById("modalDate").value=d; 
+    modal.setAttribute("data-date",d); 
+    currentEditOriginalDate=d; 
+    let ex=guards.get(d),exH=horarios.get(d); 
+    let eH='',eM='',sH='',sM=''; 
+    if(exH){ let [h1,m1]=exH.entrada.split(':'),[h2,m2]=exH.salida.split(':'); eH=h1; eM=m1; sH=h2; sM=m2; } 
+    llenarSelectoresHorario(eH,eM,sH,sM); 
+    
+    if (!guardiaDropdown) {
+      guardiaDropdown = crearDropdownCheckbox('guardiaDropdownContainer', [], function(selected) {
+        if (selected.length === 1 && personasRegistradas.has(selected[0])) {
+          document.getElementById("personPosition").value = personasRegistradas.get(selected[0]);
+        } else if (selected.length !== 1) {
+          document.getElementById("personPosition").value = "";
+        }
+      });
+    } else {
+      guardiaDropdown.refresh();
+    }
+    
+    if(ex){ 
+      document.getElementById("modalTitle").innerText="✏️ Editar Guardia (puedes cambiar fecha)"; 
+      if (ex.personNames) {
+        guardiaDropdown.setSelected(ex.personNames);
+        if (ex.personNames.length === 1 && personasRegistradas.has(ex.personNames[0])) {
+          document.getElementById("personPosition").value = personasRegistradas.get(ex.personNames[0]) || ex.position;
+        } else {
+          document.getElementById("personPosition").value = ex.position || "";
+        }
+      }
+      document.getElementById("personColor").value=ex.color; 
+      document.getElementById("colorPreview").style.background=ex.color; 
+      document.getElementById("deleteGuardiaModalBtn").style.display="inline-block"; 
+      document.getElementById("dateChangeWarning").style.display="block"; 
+    } else { 
+      document.getElementById("modalTitle").innerText="➕ Nueva Guardia (Sábado)"; 
+      guardiaDropdown.setSelected([]);
+      document.getElementById("personPosition").value=""; 
+      document.getElementById("personColor").value="#3b82f6"; 
+      document.getElementById("colorPreview").style.background="#3b82f6"; 
+      document.getElementById("deleteGuardiaModalBtn").style.display="none"; 
+      document.getElementById("dateChangeWarning").style.display="none"; 
+    } 
+    modal.style.display="flex"; 
+  }
+  
   function closeModal(){ document.getElementById("guardiaModal").style.display="none"; }
-  function saveFromModal(){ let newDate=document.getElementById("modalDate").value, name=document.getElementById("personName").value, position=document.getElementById("personPosition").value.trim(), color=document.getElementById("personColor").value, eH=document.getElementById("horaEntradaH").value, eM=document.getElementById("horaEntradaM").value, sH=document.getElementById("horaSalidaH").value, sM=document.getElementById("horaSalidaM").value; if(!name||name===""){ alert("Seleccione persona"); return; } if(!isSaturday(newDate)){ alert(`❌ ${newDate} NO es sábado (es ${getDayOfWeekSpanish(newDate)}).`); return; } let esEdicion=guards.has(currentEditOriginalDate),entrada=null,salida=null; if(eH&&eM&&sH&&sM){ entrada=`${eH}:${eM}`; salida=`${sH}:${sM}`; let eTot=parseInt(eH)*60+parseInt(eM), sTot=parseInt(sH)*60+parseInt(sM); if(sTot<=eTot){ alert("Salida debe ser posterior a la entrada"); return; } } saveGuardiaWithOptionalMove(currentEditOriginalDate,newDate,name,position,color,entrada,salida); closeModal(); }
+  
+  function saveFromModal(){ 
+    let newDate=document.getElementById("modalDate").value, 
+        nombres = guardiaDropdown ? guardiaDropdown.getSelected() : [],
+        position=document.getElementById("personPosition").value.trim(), 
+        color=document.getElementById("personColor").value, 
+        eH=document.getElementById("horaEntradaH").value, 
+        eM=document.getElementById("horaEntradaM").value, 
+        sH=document.getElementById("horaSalidaH").value, 
+        sM=document.getElementById("horaSalidaM").value; 
+    if(nombres.length === 0){ alert("Seleccione al menos una persona"); return; } 
+    if(!isSaturday(newDate)){ alert(`❌ ${newDate} NO es sábado (es ${getDayOfWeekSpanish(newDate)}).`); return; } 
+    let entrada=null,salida=null; 
+    if(eH&&eM&&sH&&sM){ 
+      entrada=`${eH}:${eM}`; 
+      salida=`${sH}:${sM}`; 
+      let eTot=parseInt(eH)*60+parseInt(eM), sTot=parseInt(sH)*60+parseInt(sM); 
+      if(sTot<=eTot){ alert("Salida debe ser posterior a la entrada"); return; } 
+    } 
+    saveGuardiaWithOptionalMove(currentEditOriginalDate,newDate,nombres,position,color,entrada,salida); 
+    closeModal(); 
+  }
+  
   function deleteFromModal(){ if(confirm("¿Eliminar guardia?")){ removeGuardia(currentEditOriginalDate); closeModal(); } }
   function updateNav(){ 
     document.getElementById("yearSelect").value = currentYear; 
@@ -1224,6 +2611,8 @@
       reiniciarTemporizadorSesion(); 
       activarDetectorInactividad(); 
       mostrarRelojSesion(true); 
+      // Actualizar visibilidad de botones
+      actualizarVisibilidadBotones();
       await Swal.fire({title:'✅ Bienvenido',text:`Acceso como ${perfil==='control-interno'?'Control Interno':'Visitante'}`,icon:'success',timer:1500,showConfirmButton:false}); 
       loadFromLocal(); 
       cargarPersonas(); 
@@ -1250,6 +2639,7 @@
       currentYear=parseInt(e.target.value); 
       renderCurrentView(); 
     }); 
+    
     document.getElementById("prevMonthBtn").addEventListener("click",()=>{ 
       if(currentView==="month"){ 
         let nm=currentMonth-1; 
@@ -1266,7 +2656,11 @@
           currentSelectedDate = `${año}-${mes}-${dia}`;
         }
         renderCurrentView(); 
-      } 
+      } else if(currentView==="year") {
+        currentYear--;
+        ySel.value = currentYear;
+        renderCurrentView();
+      }
     }); 
     document.getElementById("nextMonthBtn").addEventListener("click",()=>{ 
       if(currentView==="month"){ 
@@ -1284,7 +2678,11 @@
           currentSelectedDate = `${año}-${mes}-${dia}`;
         }
         renderCurrentView(); 
-      } 
+      } else if(currentView==="year") {
+        currentYear++;
+        ySel.value = currentYear;
+        renderCurrentView();
+      }
     }); 
     
     document.querySelectorAll(".view-btn").forEach(btn => { 
@@ -1331,13 +2729,35 @@
     document.getElementById("personColor").addEventListener("input",e=>{ 
       document.getElementById("colorPreview").style.background=e.target.value; 
     }); 
+    document.getElementById("apunteColor").addEventListener("input",e=>{ 
+      document.getElementById("apunteColorPreview").style.background=e.target.value; 
+    }); 
     document.getElementById("saveApunteBtn").addEventListener("click",saveApunteFromModal); 
     document.getElementById("cancelApunteBtn").addEventListener("click",closeApunteModal); 
     document.getElementById("deleteApunteBtn").addEventListener("click",deleteApunteFromModal); 
-    document.getElementById("btnGestionarPersonas")?.addEventListener("click",abrirModalPersonas); 
+    
+    document.getElementById("btnGestionarPersonas")?.addEventListener("click",() => abrirModalPersonas('guardia')); 
+    document.getElementById("btnGestionarPersonasApunte")?.addEventListener("click",() => abrirModalPersonas('apunte')); 
+    
     document.getElementById("closePersonasBtn")?.addEventListener("click",cerrarModalPersonas); 
     document.getElementById("btnAgregarPersona")?.addEventListener("click",agregarNuevaPersona); 
-    document.getElementById("personName")?.addEventListener("change",onPersonaSeleccionada); 
+    
+    // ===== BOTÓN DE BORRAR DATOS =====
+    document.getElementById("btnClearData")?.addEventListener("click", abrirModalBorrar);
+    document.getElementById("cancelClearData")?.addEventListener("click", function() {
+      document.getElementById("clearDataModal").style.display = "none";
+    });
+    document.getElementById("confirmClearData")?.addEventListener("click", confirmarBorrarDatos);
+    document.getElementById("btnExportBeforeClear")?.addEventListener("click", async function() {
+      await exportarJSON();
+      Swal.fire({
+        title: '✅ Respaldo creado',
+        text: 'Ahora puedes borrar los datos con seguridad',
+        icon: 'success',
+        confirmButtonColor: '#1a5d8c'
+      });
+    });
+    
     loadFromLocal(); 
     cargarPersonas(); 
     renderCurrentView(); 
@@ -1359,6 +2779,9 @@
       importFile.value=''; 
     } 
   });
+  
+  // Inicializar visibilidad de botones al cargar
+  actualizarVisibilidadBotones();
   
   if(!verificarSesionAlCargar()){ 
     document.getElementById("profileBadge").style.display="none"; 
